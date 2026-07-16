@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/package-clean-install.yml'
+  pull_request:
   workflow_dispatch:
 
 jobs:
