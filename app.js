@@ -62,6 +62,18 @@ function saveUserRecipes() {
   recipes = [...userRecipes, ...builtInRecipes];
 }
 
+function cleanMalformedLocalRecipes() {
+  const before = userRecipes.length;
+  const removedIds = new Set(userRecipes.filter(isMalformedSavedRecipe).map((recipe) => recipe.id));
+  if (!removedIds.size) return 0;
+
+  userRecipes = userRecipes.filter((recipe) => !removedIds.has(recipe.id));
+  removedIds.forEach((id) => favorites.delete(id));
+  saveFavorites();
+  saveUserRecipes();
+  return before - userRecipes.length;
+}
+
 
 function updateBackupSummary() {
   const favoriteLabel = favorites.size === 1 ? "1 ulubiony" : `${favorites.size} ulubionych`;
@@ -168,6 +180,51 @@ const escapeHtml = (value = "") =>
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 
+const PROMPT_MARKERS = [
+  "dzialasz jako", "twoim zadaniem", "zadanie:", "zasady nowego designu",
+  "ui/ux", "frontend developer", "paleta kolorow", "typografia:",
+  "komponenty i uklad", "responsywnosc:", "zachowaj pelna funkcjonalnosc",
+  "przeprojektowac wizualnie", "wariant b", "editorial premium"
+];
+
+function countPromptMarkers(value = "") {
+  const raw = normalise(value);
+  return PROMPT_MARKERS.filter((marker) => raw.includes(marker)).length;
+}
+
+function hasRecipeSections(value = "") {
+  const raw = normalise(value);
+  const hasIngredients = /(^|\n)\s*(skladniki|potrzebujesz|produkty)\s*:?/m.test(raw);
+  const hasSteps = /(^|\n)\s*(przygotowanie|wykonanie|sposob przygotowania|instrukcja|po kolei)\s*:?/m.test(raw);
+  return hasIngredients && hasSteps;
+}
+
+function countIngredientLikeLines(value = "") {
+  const unitPattern = /\b(\d+[,.]?\d*\s*(g|kg|ml|l|lyzka|lyzeczka|szklanka|szt|opak)|garsc|szczypta)\b/i;
+  return String(value).split(/\n/).filter((line) => unitPattern.test(normalise(line))).length;
+}
+
+function countStepLikeLines(value = "") {
+  return String(value).split(/\n/).filter((line) => /^\s*\d+[.)]\s+/.test(line)).length;
+}
+
+function isClearlyNotARecipe(value = "") {
+  const raw = String(value || "").trim();
+  if (!raw) return true;
+  if (countPromptMarkers(raw) >= 2) return true;
+  if (hasRecipeSections(raw)) return false;
+  return countIngredientLikeLines(raw) < 2 || countStepLikeLines(raw) < 2;
+}
+
+function isMalformedSavedRecipe(recipe) {
+  if (!recipe?.isUser) return false;
+  const original = recipe.originalText || "";
+  const hasPlaceholder = Array.isArray(recipe.ingredients) && recipe.ingredients.some((item) =>
+    normalise(item).startsWith("skladniki sa zapisane w tresci przepisu")
+  );
+  return countPromptMarkers(original) >= 2 || (hasPlaceholder && isClearlyNotARecipe(original));
+}
+
 function showToast(message, actionLabel = "", action = null) {
   clearTimeout(toastTimer);
   toast.innerHTML = `<span>${escapeHtml(message)}</span>${actionLabel ? `<button type="button">${escapeHtml(actionLabel)}</button>` : ""}`;
@@ -227,6 +284,9 @@ function inferTags(text, category, time) {
 function parseRecipeText(rawText) {
   const raw = String(rawText || "").replace(/\r/g, "").trim();
   if (!raw) throw new Error("Schowek jest pusty.");
+  if (isClearlyNotARecipe(raw)) {
+    throw new Error("To nie wygląda jak kompletny przepis. Potrzebne są składniki i sposób przygotowania.");
+  }
 
   const lines = raw.split("\n").map((line) => line.trim()).filter(Boolean);
   if (lines.length < 2) throw new Error("To za mało tekstu, żeby utworzyć przepis.");
@@ -736,11 +796,11 @@ window.addEventListener("appinstalled", () => installButton.classList.add("hidde
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
-      const registration = await navigator.serviceWorker.register("./sw.js?v=12");
+      const registration = await navigator.serviceWorker.register("./sw.js?v=13");
       await registration.update();
       navigator.serviceWorker.addEventListener("controllerchange", () => {
-        if (sessionStorage.getItem("dobreJedzenieReloadedV12") === "1") return;
-        sessionStorage.setItem("dobreJedzenieReloadedV12", "1");
+        if (sessionStorage.getItem("dobreJedzenieReloadedV13") === "1") return;
+        sessionStorage.setItem("dobreJedzenieReloadedV13", "1");
         window.location.reload();
       });
     } catch (error) {
@@ -751,7 +811,11 @@ if ("serviceWorker" in navigator) {
 
 window.addEventListener("hashchange", handleRoute);
 
+const cleanedRecipeCount = cleanMalformedLocalRecipes();
 renderMoods();
 saveFavorites();
 renderRecipes();
+if (cleanedRecipeCount) {
+  showToast(`Usunięto ${cleanedRecipeCount} błędne ${cleanedRecipeCount === 1 ? "wpis" : "wpisy"} ze schowka.`);
+}
 handleRoute();
