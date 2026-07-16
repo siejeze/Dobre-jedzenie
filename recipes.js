@@ -34,15 +34,18 @@ window.RECIPES = [
     summary: "Najbliżej zwykłej pizzy bez zabawy w kalafiorowe przebieranki.",
     tags: ["obiad", "pizza", "pieczone", "mąka MK Gold", "na weekend", "na gości"],
     ingredients: [
-      "250 g mieszanki MK Gold do pieczywa i pizzy", "drożdże według proporcji producenta",
-      "ciepła woda według chłonności mieszanki", "1 łyżka oliwy",
+      "200 g mieszanki MK Gold Bread Mix",
+      "5 g suchych drożdży albo 15–20 g świeżych",
+      "220 ml ciepłej wody, maksymalnie 40°C",
+      "5 g miodu lub cukru jako pożywka dla drożdży",
+      "40 g oliwy",
       "passata bez cukru", "mozzarella", "ulubione dodatki"
     ],
     steps: [
-      "Przygotuj ciasto według wskazań mieszanki, dodając oliwę pod koniec wyrabiania.",
-      "Pozostaw do wyrośnięcia, następnie rozciągnij cienko na papierze.",
-      "Podpiecz 6–8 minut w mocno nagrzanym piekarniku.",
-      "Dodaj sos, ser i dodatki. Dopiecz do zrumienienia brzegów."
+      "Z wody, drożdży i miodu albo cukru przygotuj zaczyn. Odstaw na 5–10 minut.",
+      "Wymieszaj MK Gold z oliwą i zaczynem. Wyrabiaj do uzyskania jednolitego, sprężystego ciasta, następnie odstaw na 5 minut.",
+      "Na cienki spód rozwałkuj ciasto od razu. Na grubszy pozostaw je do wyrośnięcia na 30–60 minut.",
+      "Dodaj sos, ser i dodatki. Piecz w dobrze nagrzanym piekarniku do zrumienienia brzegów."
     ],
     tip: "Najlepszy efekt daje bardzo gorący piekarnik i rozgrzana wcześniej blacha."
   },
@@ -462,28 +465,161 @@ window.RECIPES = [
     tip: "Erytrytol potrafi krystalizować. Mieszanka erytrytolu ze stewią zwykle daje gładszy efekt."
   },
   {
-    id: "drozdzowki-ser-truskawki",
-    title: "Drożdżówki z serem i truskawkami",
+    id: "fit-snickers-bez-pieczenia",
+    title: "Fit Snickers bez pieczenia",
     category: "deser",
-    emoji: "🥐",
-    time: 130,
-    difficulty: "średni",
-    tone: ["#efd18e", "#d88563"],
-    summary: "Wersja na mieszance MK Gold: żółta, maślana i możliwie bliska prawdziwemu drożdżowemu.",
-    tags: ["deser", "ciasto", "drożdżowe", "pieczone", "mąka MK Gold", "na weekend", "owoce"],
+    emoji: "🥜",
+    time: 30,
+    difficulty: "łatwy",
+    tone: ["#C79A6B", "#5E4032"],
+    summary: "Czekoladowo-migdałowa kruszonka, gęsty krem z mascarpone i masła orzechowego oraz chrupiące orzeszki. Bardzo blisko deseru, który pamiętasz.",
+    tags: ["deser", "ciasto", "snickers", "masło orzechowe", "bez pieczenia", "czekoladowe", "na gości"],
     ingredients: [
-      "500 g mieszanki MK Gold", "drożdże według proporcji producenta",
-      "1 całe jajko i 3 żółtka", "80 g miękkiego masła",
-      "ciepły płyn według chłonności mieszanki", "wanilia i słodzidło",
-      "250 g twarogu", "150 g mascarpone lub skyru", "truskawki"
+      "100 g gorzkiej czekolady bez cukru lub o bardzo wysokiej zawartości kakao",
+      "100 g drobnej mąki migdałowej",
+      "opcjonalnie 1–2 łyżeczki bezzapachowego oleju kokosowego, tylko gdy kruszonka jest zbyt sucha",
+      "120 g mascarpone",
+      "80 g gładkiego masła orzechowego 100%",
+      "słodzidło w pudrze do smaku, zależnie od użytej czekolady",
+      "solidna szczypta soli morskiej",
+      "40–50 g prażonych orzeszków ziemnych, najlepiej lekko solonych"
     ],
     steps: [
-      "Zagnieć mieszankę z drożdżami, jajkiem, żółtkami, wanilią i płynem.",
-      "Po kilku minutach wyrabiania dodawaj miękkie masło partiami.",
-      "Zostaw do wyrośnięcia, uformuj drożdżówki i dodaj masę serową oraz truskawki.",
-      "Pozostaw do ponownego podrośnięcia i piecz około 20 minut w 175°C."
+      "Wyłóż papierem małą formę około 10 × 15 cm albo tortownicę 16–17 cm.",
+      "Czekoladę rozpuść łagodnie w kąpieli wodnej. Wymieszaj z mąką migdałową. Jeśli masa nie daje się docisnąć i rozsypuje się, dodaj najpierw tylko 1 łyżeczkę bezzapachowego oleju kokosowego.",
+      "Połowę czekoladowej kruszonki przełóż do formy i mocno dociśnij przez arkusz papieru. Wstaw do lodówki na czas przygotowania kremu.",
+      "Mascarpone podgrzewaj na najmniejszym ogniu tylko do chwili, gdy stanie się miękkie i kremowe. Zdejmij z ognia, dodaj masło orzechowe, sól i ewentualne słodzidło. Wymieszaj na gładki, gęsty krem.",
+      "Rozsmaruj krem na schłodzonym spodzie. Posyp orzeszkami i lekko wciśnij je w masę.",
+      "Rozsyp pozostałą kruszonkę, przykryj papierem i delikatnie dociśnij, żeby połączyła się z kremem.",
+      "Schładzaj co najmniej 3 godziny, najlepiej przez noc. Krój bardzo ostrym nożem ogrzanym w gorącej wodzie."
     ],
-    tip: "Dokładna ilość płynu zależy od konkretnego składu mieszanki. Ciasto ma być miękkie i lekko klejące, nie twarde."
+    tip: "Mascarpone ma się tylko rozluźnić, a nie zagotować. Krem powinien pozostać gęsty. Jeżeli masło orzechowe jest bardzo płynne, włóż masę na 10–15 minut do lodówki przed składaniem ciasta.",
+    whyItWorks: [
+      { title: "Czekolada i mąka migdałowa", text: "Po schłodzeniu tworzą zwartą, ale kruchą warstwę bez pieczenia. Czekolada jest tu jednocześnie smakiem i spoiwem." },
+      { title: "Mascarpone", text: "Łagodzi intensywność masła orzechowego i nadaje środkowi kremową, niemal kajmakową konsystencję bez potrzeby używania śmietanki czy żelatyny." },
+      { title: "Masło orzechowe", text: "Buduje smak Snickersa i zagęszcza krem. Najlepsze jest gładkie masło 100%, ale niezbyt rzadkie." },
+      { title: "Sól i całe orzeszki", text: "Sól odcina tłustość i wzmacnia wrażenie karmelu, a orzeszki dają kontrast tekstur, bez którego deser byłby tylko miękkim kremem." }
+    ],
+    variants: [
+      { title: "Spód orzechowo-maślany, jak w Twoim wspomnieniu", text: "Zamiast czekoladowej kruszonki zmiel 120 g orzechów ziemnych lub migdałów i połącz z 45 g roztopionego masła oraz słodzidłem do smaku. Dociśnij do formy i schłodź. Góra może pozostać czekoladowa." },
+      { title: "Osobny słony przekarmel", text: "Na bardzo małym ogniu połącz 30 g masła z 30 g masła orzechowego i szczyptą soli. Tylko połącz składniki, nie gotuj i nie redukuj. Lekko przestudź, rozprowadź na kremie i dopiero potem dodaj orzeszki." },
+      { title: "W formie batoników", text: "Zrób deser w wąskiej foremce, dobrze zamroź przez 30–40 minut, pokrój i polej każdy kawałek czekoladą. Przechowuj w lodówce." },
+      { title: "Mniej ciężki", text: "Użyj 80 g mascarpone i 120 g gęstego serka śmietankowego. Smak będzie mniej maślany, a środek lżejszy i bardziej sernikowy." }
+    ],
+    sourceNote: "Wersja bazowa jest własnym, uporządkowanym zapisem popularnego Fit Snickersa bez pieczenia Przeketonowej. Wariant ze spodem orzechowo-maślanym oraz osobnym przekarmelem został dodany, ponieważ lepiej odpowiada Twojemu wspomnieniu deseru.",
+    sourceLabel: "Oryginalny Fit Snickers Przeketonowej",
+    sourceUrl: "https://przeketonowa.pl/fit-snickers-bez-pieczenia-pelen-blonnika-zdrowy-przepis-bardzo-prosty-keto-low-carb/"
+  },
+  {
+    id: "chalka-przeketonowej-owoce",
+    title: "Chałka Przeketonowej z owocami",
+    category: "deser",
+    emoji: "🍓",
+    time: 55,
+    difficulty: "łatwy",
+    tone: ["#E9CF9A", "#B66D57"],
+    summary: "Miękkie ciasto mascarpone–bambus z truskawkami i borówkami. Nie jest drożdżowe, ale dzięki pianie z białek ma lekki, chałkowy miękisz.",
+    tags: ["deser", "ciasto", "chałka", "błonnik bambusowy", "mascarpone", "owoce", "pieczone", "Przeketonowa"],
+    ingredients: [
+      "200 g mascarpone",
+      "50 g masła",
+      "60 g erytrytolu lub mieszanki erytrytolu ze stewią, do smaku",
+      "60 g błonnika bambusowego",
+      "40 g budyniu waniliowego bez cukru",
+      "8 dużych jaj, osobno białka i żółtka",
+      "niepełna łyżeczka proszku do pieczenia",
+      "około 120 g truskawek i 80–100 g borówek albo innych niezbyt wodnistych owoców jagodowych",
+      "opcjonalna kruszonka: 50 g masła, 40 g białej czekolady bez cukru i około 100 g mąki migdałowej",
+      "opcjonalny mus na wierzch: garść truskawek i 50 g mascarpone"
+    ],
+    steps: [
+      "Formę około 22 × 33 cm wyłóż papierem. Piekarnik nagrzej do 150°C z termoobiegiem.",
+      "Mascarpone i 50 g masła włóż do małego rondelka. Podgrzewaj bardzo delikatnie, mieszając, tylko do uzyskania jednolitej masy. Odstaw do przestudzenia.",
+      "Białka ubij ze słodzidłem na sztywną, błyszczącą pianę.",
+      "Dodaj żółtka, błonnik bambusowy i budyń. Połącz krótko na niskich obrotach.",
+      "Powoli wlewaj letnią masę mascarpone z masłem, mieszając na małej prędkości. Na końcu wmieszaj proszek do pieczenia.",
+      "Przełóż masę do formy i wyrównaj. Na wierzchu rozłóż osuszone truskawki i borówki.",
+      "Piecz około 15–20 minut, aż wierzch się lekko zrumieni. Czas zależy od grubości warstwy; w mniejszej formie ciasto będzie potrzebowało dłuższego pieczenia.",
+      "Jeśli robisz kruszonkę, rozpuść masło z białą czekoladą, wymieszaj z mąką migdałową, rozłóż miejscami na podpieczonym cieście i piecz jeszcze około 10 minut.",
+      "Po całkowitym wystudzeniu możesz dodać mus z truskawek zmiksowanych z mascarpone."
+    ],
+    tip: "Najważniejsze są dwie temperatury: piana musi być dobrze ubita, a masa mascarpone–masło tylko letnia. Gorący tłuszcz natychmiast odbierze pianie objętość.",
+    whyItWorks: [
+      { title: "Piana z ośmiu białek", text: "To ona napowietrza ciasto. Ta chałka nie rośnie dzięki drożdżom, lecz dzięki dużej ilości stabilnej piany i proszkowi do pieczenia." },
+      { title: "Błonnik bambusowy", text: "Chłonie wilgoć, rozjaśnia ciasto i daje lżejszy miękisz niż duża ilość mąki migdałowej. Nie wolno jednak mieszać długo po jego dodaniu." },
+      { title: "Mascarpone i masło", text: "Dają wilgotność oraz maślany smak kojarzący się z chałką. Muszą być przestudzone, aby nie zniszczyć piany." },
+      { title: "Budyń waniliowy", text: "Wnosi skrobię, wanilię i stabilizację miękiszu. To dlatego przepis jest raczej niskowęglowodanowy niż absolutnie bezskrobiowy." }
+    ],
+    variants: [
+      { title: "Zamiast błonnika bambusowego", text: "Autorka dopuszcza 80–100 g mąki migdałowej. Ciasto będzie bardziej orzechowe, cięższe i mniej chałkowe, ale nadal powinno się udać." },
+      { title: "Bez kruszonki", text: "Pomiń całą kruszonkę. To najprostsza i najmniej słodka wersja, a samo ciasto z owocami nadal jest kompletne." },
+      { title: "Inne owoce", text: "Najlepiej sprawdzą się maliny, jagody i borówki. Bardzo mokre owoce trzeba osuszyć, bo mogą opaść na spód i rozmiękczyć środek." },
+      { title: "Jako baza tortowa", text: "Upiecz bez owoców i kruszonki w wyższej formie, wydłużając czas pieczenia. Autorka wykorzystuje tę masę również jako lekką bazę do tortów." }
+    ],
+    sourceNote: "Przepis Przeketonowej zapisany w skróconej, uporządkowanej formie. Nazwa „chałka” opisuje smak i miękkość, ale technicznie jest to ciasto na pianie z białek, bez drożdży.",
+    sourceLabel: "Chałka z truskawkami i borówkami — Przeketonowa",
+    sourceUrl: "https://przeketonowa.pl/chalka-z-truskawkami-i-borowkami-fit-keto-ciasto-z-kruszonka-przepis-letni-z-owocami-niskoweglowodanowe-low-ig/"
+  },
+  {
+    id: "drozdzowki-ser-truskawki",
+    title: "Miękkie drożdżówki z serem i truskawkami",
+    category: "deser",
+    emoji: "🥐",
+    time: 165,
+    difficulty: "średni",
+    tone: ["#EFD6A8", "#C88463"],
+    summary: "Bogate, żółte i sprężyste ciasto na MK Gold: z żółtkami, śmietanką, mascarpone i małą ilością błonnika bambusowego. Bardziej brioche niż pieczywo.",
+    tags: ["deser", "ciasto", "drożdżowe", "pieczone", "mąka MK Gold", "błonnik bambusowy", "na weekend", "owoce"],
+    ingredients: [
+      "200 g mieszanki MK Gold Bread Mix",
+      "6 g błonnika bambusowego",
+      "5 g suchych drożdży albo 15 g świeżych",
+      "5 g cukru lub miodu do zaczynu",
+      "100 ml ciepłej wody, 32–38°C",
+      "60 g śmietanki 30% lub 36%, w temperaturze pokojowej",
+      "40 g mascarpone, w temperaturze pokojowej",
+      "1 całe jajko i 3 żółtka, w temperaturze pokojowej",
+      "70 g miękkiego masła",
+      "40–50 g słodzidła w pudrze, najlepiej mieszanki erytrytolu ze stewią",
+      "1 łyżeczka wanilii",
+      "250 g twarogu półtłustego lub tłustego",
+      "100 g mascarpone do masy serowej",
+      "1 żółtko do masy serowej",
+      "30–40 g słodzidła w pudrze do masy serowej",
+      "1/2 łyżeczki wanilii i odrobina skórki cytrynowej",
+      "150–180 g truskawek, pokrojonych i bardzo dobrze osuszonych",
+      "1 żółtko wymieszane z 1 łyżką śmietanki do posmarowania"
+    ],
+    steps: [
+      "Wymieszaj 100 ml ciepłej wody z drożdżami i 5 g cukru albo miodu. Odstaw na 8–10 minut, aż zaczyn wyraźnie się spieni.",
+      "W osobnej miseczce rozetrzyj 40 g mascarpone ze śmietanką na gładki, płynny krem. Nie podgrzewaj go mocniej niż do temperatury dłoni.",
+      "Do misy wsyp MK Gold, błonnik bambusowy i słodzidło. Dodaj całe jajko, 3 żółtka, wanilię oraz zaczyn. Wyrabiaj hakiem 6–8 minut na średnio niskich obrotach.",
+      "Dodawaj krem śmietankowo-mascarpone w 3 porcjach, za każdym razem wyrabiając do wchłonięcia. Wyrabiaj jeszcze 3 minuty.",
+      "Dodawaj miękkie masło po łyżce. Po dodaniu całego masła wyrabiaj 8–10 minut. Ciasto ma być bardzo miękkie i lekko klejące, ale powinno zbierać się wokół haka. Nie dosypuj od razu mieszanki.",
+      "Przykryj i odstaw ciasto na 10 minut. W tym czasie błonniki wchłoną wilgoć. Dopiero potem oceń konsystencję: jeśli ciasto jest kruche i pęka, dodaj dokładnie 10 ml wody; jeśli rozpływa się jak gęste ciasto ucierane, dodaj 5 g MK Gold. Nie wprowadzaj obu korekt naraz.",
+      "Przykryj i zostaw w ciepłym miejscu na 75–100 minut. Bogate ciasto nie musi podwoić objętości; wystarczy, że zwiększy ją mniej więcej o połowę i stanie się wyraźnie lżejsze.",
+      "Twaróg utrzyj z 100 g mascarpone, żółtkiem, słodzidłem, wanilią i skórką cytrynową. Truskawki pokrój i dokładnie osusz.",
+      "Podziel ciasto na 6 części. Wilgotnymi albo lekko natłuszczonymi dłońmi uformuj krążki z wgłębieniem. Nałóż masę serową i truskawki.",
+      "Ułóż na papierze do pieczenia, przykryj i zostaw na 40–55 minut. Posmaruj żółtkiem ze śmietanką.",
+      "Piecz 18–22 minuty w 170°C, góra–dół, bez termoobiegu. Wyjmij, gdy są złote, ale jeszcze miękkie przy lekkim naciśnięciu.",
+      "Od razu po wyjęciu cienko posmaruj roztopionym masłem i przykryj luźno czystą ściereczką na 10 minut. Dzięki temu skórka pozostanie miękka."
+    ],
+    tip: "Najważniejsze są kolejność i temperatura: najpierw budujemy sieć glutenową, dopiero potem dokładamy śmietankę, mascarpone i masło. Gdy tłuszcz trafi do misy od razu, ciasto będzie delikatne, ale może stracić sprężystość i gorzej wyrosnąć.",
+    whyItWorks: [
+      { title: "MK Gold", text: "Białko pszenne tworzy sprężystą sieć, której nie da samo mascarpone ani błonnik. To ono odpowiada za rozciągliwość i prawdziwie drożdżowy miękisz." },
+      { title: "Jedno jajko i trzy żółtka", text: "Żółtka dostarczają tłuszczu, lecytyny i koloru. Dają bogatszy, żółty miękisz, a mniejsza ilość białka jaja ogranicza wysuszanie po upieczeniu." },
+      { title: "Śmietanka", text: "Dostarcza jednocześnie wody i tłuszczu, więc zmiękcza ciasto bez kokosowego posmaku. Jest łagodniejsza niż zastąpienie całego płynu masłem." },
+      { title: "Mascarpone", text: "Wnosi wilgoć, mleczność i kremową strukturę. Używamy go umiarkowanie, bo nadmiar tłuszczu osłabiłby gluten i zrobił ciasto ciężkie." },
+      { title: "Masło dodane późno", text: "Zmiękcza miękisz i daje smak brioche, ale trafia do ciasta dopiero po wstępnym wyrobieniu, aby nie oblepiło białek zanim utworzą sieć." },
+      { title: "6 g błonnika bambusowego", text: "To mały dodatek, który pomaga zatrzymać wilgoć i rozjaśnia miękisz. Większa ilość mogłaby usztywnić ciasto, odebrać mu objętość i zwiększyć gumowatość." }
+    ],
+    variants: [
+      { title: "Rogaliki", text: "Podziel ciasto na 2 kule, każdą rozwałkuj między arkuszami papieru na koło i potnij na 6 trójkątów. Nakładaj mało, bardzo gęstego nadzienia. Zwijaj od podstawy i piecz 16–19 minut." },
+      { title: "Bez mascarpone w cieście", text: "Zamiast 40 g mascarpone użyj dodatkowych 25 g śmietanki i 15 g masła. Ciasto będzie nieco bardziej sprężyste, ale odrobinę mniej wilgotne następnego dnia." },
+      { title: "Bez błonnika bambusowego", text: "Pomiń 6 g błonnika i zmniejsz wodę ze 100 do 90 ml. Miękisz będzie bardziej zwarty i chlebowy, ale ciasto łatwiej zachowa kształt." },
+      { title: "Bardziej chałkowe", text: "Pomiń nadzienie, uformuj trzy wałki, zapleć i piecz 24–28 minut. Po upieczeniu posmaruj masłem. To wariant najbardziej zbliżony do miękkiej chałki." }
+    ],
+    sourceNote: "Receptura autorska łącząca drożdżową bazę MK Gold z techniką ciast mascarpone–bambus Przeketonowej. Nie jest kopią żadnego pojedynczego przepisu. Przed oznaczeniem jej jako ostatecznego pewniaka warto wykonać jeden kontrolny wypiek na Twojej partii mieszanki."
   }
 ];
 

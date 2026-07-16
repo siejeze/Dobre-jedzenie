@@ -311,7 +311,11 @@ function recipeSearchText(recipe) {
     recipe.category,
     recipe.summary,
     ...recipe.tags,
-    ...recipe.ingredients
+    ...recipe.ingredients,
+    ...(recipe.whyItWorks || []).flatMap((item) => [item.title, item.text]),
+    ...(recipe.variants || []).flatMap((item) => [item.title, item.text]),
+    recipe.sourceNote || "",
+    recipe.sourceLabel || ""
   ].join(" "));
 }
 
@@ -488,10 +492,43 @@ function renderRecipePage(id, scrollToTop = true) {
         </section>
       </div>
 
+      ${recipe.whyItWorks?.length ? `
+        <section class="recipe-insight-section">
+          <div class="recipe-insight-heading">
+            <p class="recipe-section-number">03</p>
+            <h2>Co daje co</h2>
+            <p>Krótka technologia przepisu, żeby można było świadomie wybierać warianty zamiast zgadywać.</p>
+          </div>
+          <div class="recipe-insight-grid">
+            ${recipe.whyItWorks.map((item) => `
+              <article class="recipe-insight-card">
+                <h3>${escapeHtml(item.title)}</h3>
+                <p>${escapeHtml(item.text)}</p>
+              </article>`).join("")}
+          </div>
+        </section>` : ""}
+
+      ${recipe.variants?.length ? `
+        <section class="recipe-variants-section">
+          <div class="recipe-insight-heading">
+            <p class="recipe-section-number">04</p>
+            <h2>Warianty</h2>
+          </div>
+          <div class="recipe-variants-list">
+            ${recipe.variants.map((item) => `
+              <article>
+                <h3>${escapeHtml(item.title)}</h3>
+                <p>${escapeHtml(item.text)}</p>
+              </article>`).join("")}
+          </div>
+        </section>` : ""}
+
       <aside class="recipe-page-tip">
         <span>Ważny drobiazg</span>
         <p>${escapeHtml(recipe.tip)}</p>
       </aside>
+
+      ${recipe.sourceNote ? `<aside class="recipe-source-note"><strong>O recepturze</strong><p>${escapeHtml(recipe.sourceNote)}</p>${recipe.sourceUrl ? `<a class="recipe-source-link" href="${escapeHtml(recipe.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(recipe.sourceLabel || "Zobacz źródło")} ↗</a>` : ""}</aside>` : ""}
 
       ${recipe.isUser ? `<button class="delete-recipe-button" type="button" data-delete="${escapeHtml(recipe.id)}">Usuń ten przepis</button>` : ""}
     </article>`;
@@ -699,11 +736,11 @@ window.addEventListener("appinstalled", () => installButton.classList.add("hidde
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
-      const registration = await navigator.serviceWorker.register("./sw.js?v=9");
+      const registration = await navigator.serviceWorker.register("./sw.js?v=12");
       await registration.update();
       navigator.serviceWorker.addEventListener("controllerchange", () => {
-        if (sessionStorage.getItem("dobreJedzenieReloadedV9") === "1") return;
-        sessionStorage.setItem("dobreJedzenieReloadedV9", "1");
+        if (sessionStorage.getItem("dobreJedzenieReloadedV12") === "1") return;
+        sessionStorage.setItem("dobreJedzenieReloadedV12", "1");
         window.location.reload();
       });
     } catch (error) {
