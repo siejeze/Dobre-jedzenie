@@ -19,6 +19,12 @@ const closeDialog = document.querySelector("#closeDialog");
 const favoritesButton = document.querySelector("#favoritesButton");
 const favoriteCount = document.querySelector("#favoriteCount");
 const installButton = document.querySelector("#installButton");
+const installBanner = document.querySelector("#installBanner");
+const installActionButton = document.querySelector("#installActionButton");
+const installDismissButton = document.querySelector("#installDismissButton");
+const installHelpDialog = document.querySelector("#installHelpDialog");
+const installHelpBody = document.querySelector("#installHelpBody");
+const closeInstallHelpDialog = document.querySelector("#closeInstallHelpDialog");
 const addRecipeMenuButton = document.querySelector("#addRecipeMenuButton");
 const clipboardAddButton = document.querySelector("#clipboardAddButton");
 const manualAddButton = document.querySelector("#manualAddButton");
@@ -853,24 +859,91 @@ backupFileInput.addEventListener("change", async () => {
   }
 });
 
-window.addEventListener("beforeinstallprompt", (event) => { event.preventDefault(); deferredPrompt = event; installButton.classList.remove("hidden"); });
-installButton.addEventListener("click", async () => {
-  if (!deferredPrompt) return;
+function isStandaloneMode() {
+  return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+}
+
+function isIOSDevice() {
+  return /iphone|ipad|ipod/i.test(navigator.userAgent);
+}
+
+function updateInstallVisibility() {
+  const installed = isStandaloneMode();
+  const dismissed = sessionStorage.getItem("dobreJedzenieInstallDismissed") === "1";
+  installBanner.classList.toggle("hidden", installed || dismissed);
+  installButton.classList.toggle("hidden", installed);
+  if (!installed) {
+    installActionButton.textContent = deferredPrompt ? "Zainstaluj" : "Jak zainstalować";
+  }
+}
+
+function showInstallInstructions() {
+  if (isIOSDevice()) {
+    installHelpBody.innerHTML = `
+      <p>Na iPhonie lub iPadzie instalacja odbywa się przez Safari:</p>
+      <ol>
+        <li>Otwórz tę stronę w <strong>Safari</strong>.</li>
+        <li>Naciśnij ikonę <strong>Udostępnij</strong>.</li>
+        <li>Wybierz <strong>Do ekranu początkowego</strong>.</li>
+        <li>Potwierdź przyciskiem <strong>Dodaj</strong>.</li>
+      </ol>
+      <p class="install-help-note">Potem uruchamiaj aplikację z nowej ikonki, a nie z linku w wiadomości.</p>`;
+  } else {
+    installHelpBody.innerHTML = `
+      <p>Na Androidzie otwórz menu Chrome oznaczone trzema kropkami i wybierz:</p>
+      <p class="install-command">Zainstaluj aplikację</p>
+      <p>Jeżeli tej opcji nie ma, wybierz <strong>Dodaj do ekranu głównego</strong>.</p>
+      <p class="install-help-note">Po instalacji uruchamiaj Dobre Jedzenie z własnej ikonki. Wtedy pasek adresu Chrome nie będzie widoczny.</p>`;
+  }
+  installHelpDialog.showModal();
+}
+
+async function requestAppInstall() {
+  if (!deferredPrompt) {
+    showInstallInstructions();
+    return;
+  }
   deferredPrompt.prompt();
-  await deferredPrompt.userChoice;
+  const result = await deferredPrompt.userChoice;
+  if (result.outcome === "accepted") {
+    installBanner.classList.add("hidden");
+  }
   deferredPrompt = null;
-  installButton.classList.add("hidden");
+  updateInstallVisibility();
+}
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredPrompt = event;
+  updateInstallVisibility();
 });
-window.addEventListener("appinstalled", () => installButton.classList.add("hidden"));
+installActionButton.addEventListener("click", requestAppInstall);
+installButton.addEventListener("click", requestAppInstall);
+installDismissButton.addEventListener("click", () => {
+  sessionStorage.setItem("dobreJedzenieInstallDismissed", "1");
+  installBanner.classList.add("hidden");
+});
+closeInstallHelpDialog.addEventListener("click", () => installHelpDialog.close());
+installHelpDialog.addEventListener("click", (event) => {
+  const rect = installHelpDialog.getBoundingClientRect();
+  if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) installHelpDialog.close();
+});
+window.addEventListener("appinstalled", () => {
+  deferredPrompt = null;
+  installBanner.classList.add("hidden");
+  installButton.classList.add("hidden");
+  showToast("Aplikacja została zainstalowana. Otwieraj ją teraz z własnej ikonki.");
+});
+window.matchMedia("(display-mode: standalone)").addEventListener?.("change", updateInstallVisibility);
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
-      const registration = await navigator.serviceWorker.register("./sw.js?v=17");
+      const registration = await navigator.serviceWorker.register("./sw.js?v=18");
       await registration.update();
       navigator.serviceWorker.addEventListener("controllerchange", () => {
-        if (sessionStorage.getItem("dobreJedzenieReloadedV17") === "1") return;
-        sessionStorage.setItem("dobreJedzenieReloadedV17", "1");
+        if (sessionStorage.getItem("dobreJedzenieReloadedV18") === "1") return;
+        sessionStorage.setItem("dobreJedzenieReloadedV18", "1");
         window.location.reload();
       });
     } catch (error) {
@@ -889,3 +962,4 @@ if (cleanedRecipeCount) {
   showToast(`Usunięto ${cleanedRecipeCount} błędne ${cleanedRecipeCount === 1 ? "wpis" : "wpisy"} ze schowka.`);
 }
 handleRoute();
+updateInstallVisibility();
