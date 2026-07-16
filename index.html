@@ -12,7 +12,7 @@
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icons/icon-192.png" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <link rel="stylesheet" href="./styles.css?v=7" />
+  <link rel="stylesheet" href="./styles.css?v=9" />
 </head>
 <body>
   <div class="app-shell">
@@ -112,15 +112,17 @@
           To nie jest katalog wszystkiego. To ma być półka z rzeczami, które naprawdę warto powtarzać.
         </p>
       </section>
+
+      <section id="recipePage" class="recipe-page hidden" aria-live="polite"></section>
     </main>
 
     <footer>
-      <p>Dobre Jedzenie · wersja 0.7</p>
+      <p>Dobre Jedzenie · wersja 0.9</p>
       <button id="installButton" class="install-button hidden" type="button">Zainstaluj aplikację</button>
     </footer>
   </div>
 
-  <div class="quick-add-dock" aria-label="Dodawanie przepisu">
+  <div id="quickAddDock" class="quick-add-dock" aria-label="Dodawanie przepisu">
     <button id="addRecipeMenuButton" class="quick-add-button" type="button">
       <span class="quick-add-icon" aria-hidden="true">＋</span>
       <span>Dodaj przepis</span>
@@ -216,7 +218,7 @@ Przygotowanie:
     <button id="closeDialog" class="dialog-close" type="button" aria-label="Zamknij">×</button>
   </dialog>
 
-  <script src="./recipes.js?v=7"></script>
-  <script src="./app.js?v=7"></script>
+  <script src="./recipes.js?v=9"></script>
+  <script src="./app.js?v=9"></script>
 </body>
 </html>

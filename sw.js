@@ -1,10 +1,10 @@
-const CACHE = "dobre-jedzenie-v7";
+const CACHE = "dobre-jedzenie-v9";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=7",
-  "./recipes.js?v=7",
-  "./app.js?v=7",
+  "./styles.css?v=9",
+  "./recipes.js?v=9",
+  "./app.js?v=9",
   "./manifest.webmanifest",
   "./icons/icon-192.png",
   "./icons/icon-512.png"

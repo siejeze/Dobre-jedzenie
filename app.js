@@ -10,6 +10,9 @@ const resultsTitle = document.querySelector("#resultsTitle");
 const resultsEyebrow = document.querySelector("#resultsEyebrow");
 const resultsNote = document.querySelector("#resultsNote");
 const emptyState = document.querySelector("#emptyState");
+const recipePage = document.querySelector("#recipePage");
+const homeSections = [...document.querySelectorAll("main > section:not(#recipePage)")];
+const quickAddDock = document.querySelector("#quickAddDock");
 const recipeDialog = document.querySelector("#recipeDialog");
 const dialogContent = document.querySelector("#dialogContent");
 const closeDialog = document.querySelector("#closeDialog");
@@ -40,6 +43,7 @@ let currentQuery = "";
 let favoritesOnly = false;
 let deferredPrompt = null;
 let toastTimer = null;
+let lastHomeScrollY = 0;
 let favorites = new Set(JSON.parse(localStorage.getItem("dobreJedzenieFavorites") || "[]"));
 let userRecipes = loadUserRecipes();
 let recipes = [...userRecipes, ...builtInRecipes];
@@ -367,6 +371,7 @@ function toggleFavorite(id) {
   favorites.has(id) ? favorites.delete(id) : favorites.add(id);
   saveFavorites();
   renderRecipes();
+  if (getRecipeIdFromHash() === id) renderRecipePage(id, false);
 }
 
 function renderMoods() {
@@ -386,7 +391,7 @@ function renderMoods() {
 function renderRecipes() {
   const visible = getVisibleRecipes();
   recipeGrid.innerHTML = visible.map((recipe) => `
-    <article class="recipe-card" style="--tone-1:${escapeHtml(recipe.tone[0])}; --tone-2:${escapeHtml(recipe.tone[1])}">
+    <article class="recipe-card" role="button" tabindex="0" data-open="${escapeHtml(recipe.id)}" aria-label="Otwórz przepis: ${escapeHtml(recipe.title)}" style="--tone-1:${escapeHtml(recipe.tone[0])}; --tone-2:${escapeHtml(recipe.tone[1])}">
       <div class="recipe-visual">
         <span class="recipe-emoji" aria-hidden="true">${escapeHtml(recipe.emoji)}</span>
         <button class="favorite-toggle ${favorites.has(recipe.id) ? "saved" : ""}" type="button" data-favorite="${escapeHtml(recipe.id)}"
@@ -422,23 +427,101 @@ function renderRecipes() {
   }
 }
 
+function getRecipeIdFromHash() {
+  const match = window.location.hash.match(/^#\/recipe\/(.+)$/);
+  if (!match) return null;
+  try {
+    return decodeURIComponent(match[1]);
+  } catch {
+    return match[1];
+  }
+}
+
+function renderRecipePage(id, scrollToTop = true) {
+  const recipe = recipes.find((item) => item.id === id);
+  if (!recipe) {
+    window.location.hash = "#/";
+    return;
+  }
+
+  homeSections.forEach((section) => section.classList.add("hidden"));
+  recipePage.classList.remove("hidden");
+  quickAddDock.classList.add("hidden");
+
+  recipePage.innerHTML = `
+    <div class="recipe-page-toolbar">
+      <button class="recipe-back-button" type="button" data-back-home>← Wróć do przepisów</button>
+      <button class="recipe-page-favorite ${favorites.has(recipe.id) ? "saved" : ""}" type="button" data-favorite="${escapeHtml(recipe.id)}">
+        ${favorites.has(recipe.id) ? "♥ W ulubionych" : "♡ Dodaj do ulubionych"}
+      </button>
+    </div>
+
+    <article class="recipe-page-article">
+      <div class="recipe-page-cover" style="--tone-1:${escapeHtml(recipe.tone[0])}; --tone-2:${escapeHtml(recipe.tone[1])}">
+        <span aria-hidden="true">${escapeHtml(recipe.emoji)}</span>
+      </div>
+
+      <header class="recipe-page-header">
+        <p class="eyebrow">${escapeHtml(recipe.category)} · ${escapeHtml(recipe.time)} min · ${escapeHtml(recipe.difficulty)}</p>
+        <h1>${escapeHtml(recipe.title)}</h1>
+        <p class="recipe-page-lead">${escapeHtml(recipe.summary)}</p>
+        <div class="recipe-page-tags">
+          ${recipe.tags.slice(0, 5).map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}
+        </div>
+      </header>
+
+      <div class="recipe-page-columns">
+        <section class="recipe-page-section ingredients-section">
+          <p class="recipe-section-number">01</p>
+          <h2>Składniki</h2>
+          <ul class="ingredient-list">
+            ${recipe.ingredients.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+          </ul>
+        </section>
+
+        <section class="recipe-page-section steps-section">
+          <p class="recipe-section-number">02</p>
+          <h2>Przygotowanie</h2>
+          <ol class="step-list">
+            ${recipe.steps.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+          </ol>
+        </section>
+      </div>
+
+      <aside class="recipe-page-tip">
+        <span>Ważny drobiazg</span>
+        <p>${escapeHtml(recipe.tip)}</p>
+      </aside>
+
+      ${recipe.isUser ? `<button class="delete-recipe-button" type="button" data-delete="${escapeHtml(recipe.id)}">Usuń ten przepis</button>` : ""}
+    </article>`;
+
+  document.title = `${recipe.title} · Dobre Jedzenie`;
+  if (scrollToTop) window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+function showHomeView(restoreScroll = true) {
+  recipePage.classList.add("hidden");
+  recipePage.innerHTML = "";
+  homeSections.forEach((section) => section.classList.remove("hidden"));
+  quickAddDock.classList.remove("hidden");
+  document.title = "Dobre Jedzenie";
+  if (restoreScroll) requestAnimationFrame(() => window.scrollTo({ top: lastHomeScrollY, behavior: "instant" }));
+}
+
+function handleRoute() {
+  const recipeId = getRecipeIdFromHash();
+  if (recipeId) renderRecipePage(recipeId);
+  else showHomeView();
+}
+
 function showRecipe(id) {
   const recipe = recipes.find((item) => item.id === id);
   if (!recipe) return;
-  dialogContent.innerHTML = `
-    <div class="dialog-hero" style="--tone-1:${escapeHtml(recipe.tone[0])}; --tone-2:${escapeHtml(recipe.tone[1])}">${escapeHtml(recipe.emoji)}</div>
-    <div class="dialog-body">
-      <p class="eyebrow">${escapeHtml(recipe.category)} · ${escapeHtml(recipe.time)} min · ${escapeHtml(recipe.difficulty)}</p>
-      <h2>${escapeHtml(recipe.title)}</h2>
-      <p class="dialog-lead">${escapeHtml(recipe.summary)}</p>
-      <div class="dialog-columns">
-        <section><h3>Składniki</h3><ul class="ingredient-list">${recipe.ingredients.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section>
-        <section><h3>Po kolei</h3><ol class="step-list">${recipe.steps.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol></section>
-      </div>
-      <div class="recipe-tip"><strong>Ważny drobiazg:</strong> ${escapeHtml(recipe.tip)}</div>
-      ${recipe.isUser ? `<button class="delete-recipe-button" type="button" data-delete="${escapeHtml(recipe.id)}">Usuń ten przepis</button>` : ""}
-    </div>`;
-  recipeDialog.showModal();
+  lastHomeScrollY = window.scrollY;
+  const targetHash = `#/recipe/${encodeURIComponent(id)}`;
+  if (window.location.hash === targetHash) renderRecipePage(id);
+  else window.location.hash = targetHash;
 }
 
 function applyQuery(query) {
@@ -451,31 +534,72 @@ function applyQuery(query) {
 
 searchForm.addEventListener("submit", (event) => { event.preventDefault(); applyQuery(searchInput.value); });
 document.addEventListener("click", (event) => {
-  const mood = event.target.closest("[data-query]");
-  const chip = event.target.closest("[data-filter]");
-  const open = event.target.closest("[data-open]");
   const favorite = event.target.closest("[data-favorite]");
+  if (favorite) {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleFavorite(favorite.dataset.favorite);
+    return;
+  }
+
   const deleteButton = event.target.closest("[data-delete]");
-  if (mood) applyQuery(mood.dataset.query);
-  if (chip) applyQuery(chip.dataset.filter);
-  if (open) showRecipe(open.dataset.open);
-  if (favorite) { event.stopPropagation(); toggleFavorite(favorite.dataset.favorite); }
   if (deleteButton) {
+    event.preventDefault();
+    event.stopPropagation();
     const id = deleteButton.dataset.delete;
-    recipeDialog.close();
+    if (recipeDialog?.open) recipeDialog.close();
     deleteUserRecipe(id);
+    if (getRecipeIdFromHash() === id) window.location.hash = "#/";
+    return;
+  }
+
+  const backHome = event.target.closest("[data-back-home]");
+  if (backHome) {
+    event.preventDefault();
+    window.location.hash = "#/";
+    return;
+  }
+
+  const mood = event.target.closest("[data-query]");
+  if (mood) { applyQuery(mood.dataset.query); return; }
+
+  const chip = event.target.closest("[data-filter]");
+  if (chip) { applyQuery(chip.dataset.filter); return; }
+
+  const open = event.target.closest("[data-open]");
+  if (open) showRecipe(open.dataset.open);
+});
+
+document.addEventListener("keydown", (event) => {
+  const card = event.target.closest?.(".recipe-card[data-open]");
+  if (!card || event.target.closest("button")) return;
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    showRecipe(card.dataset.open);
   }
 });
 
 clearFilters.addEventListener("click", () => { currentQuery = ""; favoritesOnly = false; searchInput.value = ""; renderRecipes(); });
 favoritesButton.addEventListener("click", () => {
-  favoritesOnly = !favoritesOnly; currentQuery = ""; searchInput.value = ""; renderRecipes();
-  document.querySelector(".results-section").scrollIntoView({ behavior: "smooth", block: "start" });
+  favoritesOnly = !favoritesOnly;
+  currentQuery = "";
+  searchInput.value = "";
+  renderRecipes();
+  lastHomeScrollY = 0;
+  if (window.location.hash !== "#/") window.location.hash = "#/";
+  else showHomeView(false);
+  requestAnimationFrame(() => document.querySelector(".results-section").scrollIntoView({ behavior: "smooth", block: "start" }));
 });
-closeDialog.addEventListener("click", () => recipeDialog.close());
+closeDialog.addEventListener("click", () => {
+  if (typeof recipeDialog.close === "function" && recipeDialog.open) recipeDialog.close();
+  else { recipeDialog.removeAttribute("open"); recipeDialog.classList.remove("dialog-fallback-open"); }
+});
 recipeDialog.addEventListener("click", (event) => {
   const rect = recipeDialog.getBoundingClientRect();
-  if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) recipeDialog.close();
+  if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) {
+    if (typeof recipeDialog.close === "function" && recipeDialog.open) recipeDialog.close();
+    else { recipeDialog.removeAttribute("open"); recipeDialog.classList.remove("dialog-fallback-open"); }
+  }
 });
 
 async function readClipboard() {
@@ -575,11 +699,11 @@ window.addEventListener("appinstalled", () => installButton.classList.add("hidde
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
-      const registration = await navigator.serviceWorker.register("./sw.js?v=7");
+      const registration = await navigator.serviceWorker.register("./sw.js?v=9");
       await registration.update();
       navigator.serviceWorker.addEventListener("controllerchange", () => {
-        if (sessionStorage.getItem("dobreJedzenieReloadedV7") === "1") return;
-        sessionStorage.setItem("dobreJedzenieReloadedV7", "1");
+        if (sessionStorage.getItem("dobreJedzenieReloadedV9") === "1") return;
+        sessionStorage.setItem("dobreJedzenieReloadedV9", "1");
         window.location.reload();
       });
     } catch (error) {
@@ -588,6 +712,9 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+window.addEventListener("hashchange", handleRoute);
+
 renderMoods();
 saveFavorites();
 renderRecipes();
+handleRoute();
