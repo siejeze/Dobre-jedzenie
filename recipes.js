@@ -382,7 +382,7 @@ window.RECIPES = [
     difficulty: "łatwy",
     tone: ["#d8e7a3", "#87a867"],
     summary: "Orzeźwiający, kremowy i bardzo dobry po cięższym obiedzie.",
-    tags: ["deser", "orzeźwiające", "awokado", "bez pieczenia", "na gości", "kremowe"],
+    tags: ["deser", "ciasto", "sernik", "orzeźwiające", "awokado", "bez pieczenia", "na gości", "kremowe"],
     ingredients: [
       "1 awokado", "250 g mascarpone lub serka śmietankowego",
       "sok i skórka z 1 limonki", "słodzidło w pudrze",
@@ -470,7 +470,7 @@ window.RECIPES = [
     difficulty: "średni",
     tone: ["#efd18e", "#d88563"],
     summary: "Wersja na mieszance MK Gold: żółta, maślana i możliwie bliska prawdziwemu drożdżowemu.",
-    tags: ["deser", "drożdżowe", "pieczone", "mąka MK Gold", "na weekend", "owoce"],
+    tags: ["deser", "ciasto", "drożdżowe", "pieczone", "mąka MK Gold", "na weekend", "owoce"],
     ingredients: [
       "500 g mieszanki MK Gold", "drożdże według proporcji producenta",
       "1 całe jajko i 3 żółtka", "80 g miękkiego masła",

@@ -52,8 +52,18 @@ function tokenise(query) {
 function scoreRecipe(recipe, query) {
   if (!query.trim()) return 1;
   const text = recipeSearchText(recipe);
+  const normalisedQuery = normalise(query);
   const tokens = tokenise(query);
   let score = 0;
+
+  const cakeIntent = /\b(ciasto|ciasta|ciastko|ciastka|tort|tortu|sernik|sernika)\b/.test(normalisedQuery);
+  if (cakeIntent) {
+    if (recipe.category !== "deser") return 0;
+
+    const cakeWords = ["ciasto", "sernik", "drozdz", "tort", "brownie", "biszkopt", "wypiek"];
+    if (cakeWords.some((word) => text.includes(word))) score += 12;
+    if (recipe.tags.includes("pieczone")) score += 3;
+  }
 
   tokens.forEach((token) => {
     if (text.includes(token)) score += 2;
@@ -61,13 +71,13 @@ function scoreRecipe(recipe, query) {
     if (recipe.tags.some((tag) => normalise(tag).includes(token))) score += 2;
   });
 
-  const minuteMatch = normalise(query).match(/do\s*(\d+)\s*min/);
+  const minuteMatch = normalisedQuery.match(/do\s*(\d+)\s*min/);
   if (minuteMatch && recipe.time <= Number(minuteMatch[1])) score += 6;
 
-  if (normalise(query).includes("szybk") && recipe.time <= 20) score += 4;
-  if (normalise(query).includes("lekka") && recipe.tags.includes("lekka kolacja")) score += 5;
-  if (normalise(query).includes("bez pieczenia") && recipe.tags.includes("bez pieczenia")) score += 6;
-  if (normalise(query).includes("na gosci") && recipe.tags.includes("na gości")) score += 5;
+  if (normalisedQuery.includes("szybk") && recipe.time <= 20) score += 4;
+  if (normalisedQuery.includes("lekka") && recipe.tags.includes("lekka kolacja")) score += 5;
+  if (normalisedQuery.includes("bez pieczenia") && recipe.tags.includes("bez pieczenia")) score += 6;
+  if (normalisedQuery.includes("na gosci") && recipe.tags.includes("na gości")) score += 5;
 
   return score;
 }
@@ -264,10 +274,19 @@ window.addEventListener("appinstalled", () => {
 });
 
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js").catch((error) => {
+  window.addEventListener("load", async () => {
+    try {
+      const registration = await navigator.serviceWorker.register("./sw.js?v=3");
+      await registration.update();
+
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (sessionStorage.getItem("dobreJedzenieReloaded") === "1") return;
+        sessionStorage.setItem("dobreJedzenieReloaded", "1");
+        window.location.reload();
+      });
+    } catch (error) {
       console.warn("Nie udało się zarejestrować trybu offline:", error);
-    });
+    }
   });
 }
 
