@@ -63,6 +63,3 @@ W aplikacji wybierz `Przenieś moje przepisy`.
 Plik kopii nie zawiera przepisów wbudowanych w aplikację, ponieważ te są częścią samej aplikacji.
 
 
-## Instalacja jako aplikacja
-
-Po wejściu z linku strona otwiera się w przeglądarce. Aby uruchamiała się bez paska adresu, z własnej ikony, trzeba ją zainstalować. Aplikacja pokazuje teraz wyraźny komunikat instalacyjny oraz instrukcję osobno dla Androida i iPhone’a.

@@ -16,7 +16,7 @@
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icons/icon-192-v14.png" />
   <link rel="apple-touch-icon" href="./icons/icon-192-v14.png" />
-  <link rel="stylesheet" href="./styles.css?v=18" />
+  <link rel="stylesheet" href="./styles.css?v=19" />
 </head>
 <body>
   <div class="app-shell">
@@ -33,20 +33,7 @@
         <span id="favoriteCount" class="counter">0</span>
       </button>
     </header>
-
-    <aside id="installBanner" class="install-banner hidden" aria-label="Instalacja aplikacji">
-      <div class="install-banner-icon" aria-hidden="true">D</div>
-      <div class="install-banner-copy">
-        <strong>Otwieraj jak normalną aplikację</strong>
-        <span>Zainstaluj Dobre Jedzenie na ekranie telefonu. Zniknie pasek adresu Chrome, a aplikacja dostanie własną ikonkę.</span>
-      </div>
-      <div class="install-banner-actions">
-        <button id="installActionButton" class="install-banner-primary" type="button">Zainstaluj</button>
-        <button id="installDismissButton" class="install-banner-secondary" type="button">Nie teraz</button>
-      </div>
-    </aside>
-
-    <main>
+<main>
       <section class="hero hero-editorial">
         <div class="hero-copy-wrap">
           <p class="eyebrow">Osobisty doradca kulinarny</p>
@@ -123,8 +110,7 @@
     </main>
 
     <footer>
-      <p>Dobre Jedzenie · wersja 0.18</p>
-      <button id="installButton" class="install-button hidden" type="button">Zainstaluj aplikację</button>
+      <p>Dobre Jedzenie · wersja 0.19</p>
     </footer>
   </div>
 
@@ -218,26 +204,12 @@ Przygotowanie:
       <p class="backup-note">Kopia nie zawiera przepisów wbudowanych w aplikację, bo te pojawiają się automatycznie.</p>
     </div>
   </dialog>
-
-  <dialog id="installHelpDialog" class="install-help-dialog">
-    <div class="install-help-content">
-      <div class="add-dialog-header">
-        <div>
-          <p class="eyebrow">Instalacja</p>
-          <h2>Dodaj aplikację do telefonu</h2>
-        </div>
-        <button id="closeInstallHelpDialog" class="simple-close" type="button" aria-label="Zamknij">×</button>
-      </div>
-      <div id="installHelpBody" class="install-help-body"></div>
-    </div>
-  </dialog>
-
-  <dialog id="recipeDialog" class="recipe-dialog">
+<dialog id="recipeDialog" class="recipe-dialog">
     <article id="dialogContent"></article>
     <button id="closeDialog" class="dialog-close" type="button" aria-label="Zamknij">×</button>
   </dialog>
 
-  <script src="./recipes.js?v=18"></script>
-  <script src="./app.js?v=18"></script>
+  <script src="./recipes.js?v=19"></script>
+  <script src="./app.js?v=19"></script>
 </body>
 </html>
