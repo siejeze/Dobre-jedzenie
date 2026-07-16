@@ -1,18 +1,27 @@
-DOBRE JEDZENIE 0.20 — WGRYWANIE
+DOBRE JEDZENIE 0.21 — WAŻNE
 
-1. Rozpakuj ZIP.
-2. Otwórz folder Dobre-jedzenie-0.20.
-3. Wgraj do repozytorium WSZYSTKIE pliki znajdujące się w środku,
-   włącznie z:
-   - icon-192.png
-   - icon-512.png
-   - manifest.webmanifest
-   - sw.js
-   - .nojekyll
-4. Pliki muszą leżeć bezpośrednio w głównym katalogu repozytorium.
-5. Usuń z telefonu stary skrót Dobre Jedzenie.
-6. Otwórz stronę ponownie w Chrome, dotknij jej przynajmniej raz
-   i pozostaw otwartą przez chwilę. Gdy Chrome potwierdzi możliwość
-   instalacji, pojawi się mały dymek „Zainstaluj”.
+Ta wersja jest przygotowana dokładnie dla adresu:
+https://siejeze.github.io/Dobre-jedzenie/
 
-W stopce aplikacji powinna być widoczna wersja 0.20.
+WGRYWANIE
+1. Wgraj wszystkie pliki z folderu Dobre-jedzenie-0.21 bezpośrednio
+   do głównego katalogu repozytorium Dobre-jedzenie.
+2. Zastąp dotychczasowe pliki.
+3. Sprawdź w stopce, czy widzisz wersję 0.21.
+
+PONOWNA INSTALACJA
+1. Najpierw usuń starą ikonę z ekranu.
+2. Przytrzymaj ikonę. Jeżeli jest opcja „Informacje o aplikacji”,
+   wejdź tam i wybierz „Odinstaluj”.
+3. Zamknij wszystkie karty Dobre Jedzenie w Chrome.
+4. Otwórz:
+   https://siejeze.github.io/Dobre-jedzenie/
+5. Odśwież stronę dwa razy.
+6. Użyj dymka „Zainstaluj”.
+7. Uruchom aplikację z NOWEJ ikony, najlepiej z szuflady aplikacji.
+
+W prawidłowo uruchomionej aplikacji stopka pokaże:
+„wersja 0.21 · tryb aplikacji”
+
+Jeżeli w stopce nie ma słów „tryb aplikacji”, uruchomiony został skrót
+przeglądarki, nie właściwa aplikacja PWA.

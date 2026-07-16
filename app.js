@@ -861,9 +861,9 @@ function isStandaloneApp() {
 
 function showInstallBubble() {
   if (!deferredInstallPrompt || isStandaloneApp()) return;
-  if (sessionStorage.getItem("dobreJedzenieInstallBubbleShownV20") === "1") return;
+  if (sessionStorage.getItem("dobreJedzenieInstallBubbleShownV21") === "1") return;
 
-  sessionStorage.setItem("dobreJedzenieInstallBubbleShownV20", "1");
+  sessionStorage.setItem("dobreJedzenieInstallBubbleShownV21", "1");
   showToast(
     "Zainstaluj Dobre Jedzenie jak zwykłą aplikację.",
     "Zainstaluj",
@@ -873,7 +873,7 @@ function showInstallBubble() {
       await promptEvent.prompt();
       const choice = await promptEvent.userChoice;
       if (choice.outcome !== "accepted") {
-        sessionStorage.removeItem("dobreJedzenieInstallBubbleShownV20");
+        sessionStorage.removeItem("dobreJedzenieInstallBubbleShownV21");
       }
     },
     9000
@@ -895,11 +895,11 @@ window.addEventListener("appinstalled", () => {
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
-      const registration = await navigator.serviceWorker.register("./sw.js?v=20");
+      const registration = await navigator.serviceWorker.register("/Dobre-jedzenie/sw.js?v=21", { scope: "/Dobre-jedzenie/" });
       await registration.update();
       navigator.serviceWorker.addEventListener("controllerchange", () => {
-        if (sessionStorage.getItem("dobreJedzenieReloadedV20") === "1") return;
-        sessionStorage.setItem("dobreJedzenieReloadedV20", "1");
+        if (sessionStorage.getItem("dobreJedzenieReloadedV21") === "1") return;
+        sessionStorage.setItem("dobreJedzenieReloadedV21", "1");
         window.location.reload();
       });
     } catch (error) {
@@ -918,3 +918,18 @@ if (cleanedRecipeCount) {
   showToast(`Usunięto ${cleanedRecipeCount} błędne ${cleanedRecipeCount === 1 ? "wpis" : "wpisy"} ze schowka.`);
 }
 handleRoute();
+
+function updateDisplayModeLabel() {
+  const label = document.querySelector("#displayModeLabel");
+  if (!label) return;
+
+  const standalone =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true;
+
+  label.textContent = standalone ? " · tryb aplikacji" : "";
+  document.documentElement.dataset.displayMode = standalone ? "standalone" : "browser";
+}
+
+window.matchMedia("(display-mode: standalone)").addEventListener?.("change", updateDisplayModeLabel);
+updateDisplayModeLabel();
