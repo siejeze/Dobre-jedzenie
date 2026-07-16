@@ -322,7 +322,7 @@ function parseRecipeText(rawText) {
   if (!ingredients.length) ingredients = ["Składniki są zapisane w treści przepisu. Otwórz przepis i popraw później, jeśli trzeba."];
   if (!steps.length) steps = lines.slice(1).map(stripListPrefix).filter(Boolean);
 
-  const timeMatch = normalise(raw).match(/(\d{1,3})\s*(min|minut)/);
+  const timeMatch = normalise(raw).match(/(\d{1,3})\s*(minut|min)/);
   const time = timeMatch ? Math.max(1, Number(timeMatch[1])) : 20;
   const category = inferCategory(`${title} ${raw}`);
   const tags = inferTags(`${title} ${raw}`, category, time);
@@ -366,72 +366,121 @@ function deleteUserRecipe(id, notify = true) {
   if (notify && recipe) showToast(`Usunięto: ${recipe.title}`);
 }
 
-function recipeSearchText(recipe) {
-  return normalise([
-    recipe.title,
-    recipe.category,
-    recipe.summary,
-    ...recipe.tags,
-    ...recipe.ingredients,
-    ...(recipe.whyItWorks || []).flatMap((item) => [item.title, item.text]),
-    ...(recipe.variants || []).flatMap((item) => [item.title, item.text]),
-    recipe.sourceNote || "",
-    recipe.sourceLabel || ""
-  ].join(" "));
+function recipeSearchCore(recipe) {
+  const title = normalise(recipe.title);
+  const category = normalise(recipe.category);
+  const tags = (recipe.tags || []).map((tag) => normalise(tag));
+  const titleWords = new Set(title.split(/[^a-z0-9]+/).filter(Boolean));
+  const tagWords = new Set(tags.flatMap((tag) => tag.split(/[^a-z0-9]+/).filter(Boolean)));
+  return { title, category, tags, titleWords, tagWords };
 }
 
-function tokenise(query) {
+function normaliseSearchToken(token) {
+  if (/^kokos/.test(token)) return "kokosowe";
+  if (/^czekol/.test(token) || token === "kakao") return "czekoladowe";
+  if (/^chalka/.test(token)) return "chalka";
+  if (/^chleb/.test(token) || /^pieczyw/.test(token) || /^bochenk/.test(token)) return "chleb";
+  if (/^kurcz/.test(token)) return "kurczak";
+  if (/^sernik/.test(token)) return "sernik";
+  if (/^drozdz/.test(token)) return "drozdzowe";
+  if (/^kolac/.test(token)) return "kolacja";
+  if (/^sniad/.test(token)) return "sniadanie";
+  if (/^obiad/.test(token)) return "obiad";
+  if (/^deser/.test(token)) return "deser";
+  if (/^owoc/.test(token)) return "owoce";
+  return token;
+}
+
+function buildSearchCriteria(query) {
+  let value = normalise(query).trim();
+  const criteria = [];
+
+  const addTag = (tag) => criteria.push({ type: "tag", value: normalise(tag) });
+  const phraseTags = [
+    ["bez pieczenia", "bez pieczenia"],
+    ["na gosci", "na gosci"],
+    ["lekka kolacja", "lekka kolacja"],
+    ["jedna patelnia", "jedna patelnia"],
+    ["na weekend", "na weekend"]
+  ];
+
+  phraseTags.forEach(([phrase, tag]) => {
+    if (value.includes(phrase)) {
+      addTag(tag);
+      value = value.replaceAll(phrase, " ");
+    }
+  });
+
+  const timeMatch = value.match(/do\s*(\d{1,3})\s*(minut|min)/);
+  if (timeMatch) {
+    criteria.push({ type: "maxTime", value: Number(timeMatch[1]) });
+    value = value.replace(timeMatch[0], " ");
+  }
+
   const stopWords = new Set([
-    "cos", "chce", "mam", "ochote", "potrzebuje", "prosze", "zrob", "danie",
-    "przepis", "jakies", "jakiegos", "dzis", "dzisiaj", "na", "z", "i", "albo"
+    "cos", "czegos", "chce", "mam", "ochote", "potrzebuje", "prosze", "zrob",
+    "danie", "przepis", "jakies", "jakiegos", "dzis", "dzisiaj", "na", "z",
+    "i", "albo", "oraz", "mi", "poprosze"
   ]);
-  return normalise(query)
-    .split(/[^a-z0-9]+/i)
-    .filter((token) => token.length > 1 && !stopWords.has(token));
+
+  value
+    .split(/[^a-z0-9]+/)
+    .filter((token) => token.length > 1 && !stopWords.has(token))
+    .map(normaliseSearchToken)
+    .forEach((token) => {
+      if (token === "ciasto" || token === "ciasta" || token === "tort" || token === "brownie" || token === "biszkopt") {
+        criteria.push({ type: "cake", value: "ciasto" });
+      } else if (["sniadanie", "obiad", "kolacja", "deser"].includes(token)) {
+        criteria.push({ type: "category", value: token });
+      } else if (token === "chalka") {
+        criteria.push({ type: "exact", value: "chalka" });
+      } else if (token === "chleb") {
+        criteria.push({ type: "tag", value: "chleb" });
+      } else if (token === "kokosowe" || token === "czekoladowe" || token === "drozdzowe") {
+        criteria.push({ type: "tag", value: token });
+      } else {
+        criteria.push({ type: "term", value: token });
+      }
+    });
+
+  const unique = new Map();
+  criteria.forEach((criterion) => unique.set(`${criterion.type}:${criterion.value}`, criterion));
+  return [...unique.values()];
+}
+
+function criterionMatches(recipe, criterion) {
+  const core = recipeSearchCore(recipe);
+
+  if (criterion.type === "maxTime") return Number(recipe.time) <= criterion.value;
+  if (criterion.type === "category") return core.category === criterion.value;
+  if (criterion.type === "tag") return core.tags.includes(criterion.value);
+
+  if (criterion.type === "cake") {
+    return core.tags.includes("ciasto") || ["sernik", "tort", "brownie", "biszkopt"].some((word) => core.titleWords.has(word));
+  }
+
+  if (criterion.type === "exact") {
+    return core.titleWords.has(criterion.value) || core.tags.includes(criterion.value);
+  }
+
+  return core.titleWords.has(criterion.value) || core.tagWords.has(criterion.value) || core.tags.includes(criterion.value);
 }
 
 function scoreRecipe(recipe, query) {
   if (!query.trim()) return 1;
-  const text = recipeSearchText(recipe);
-  const normalisedQuery = normalise(query);
-  const tokens = tokenise(query);
-  let score = 0;
+  const criteria = buildSearchCriteria(query);
+  if (!criteria.length) return 0;
+  if (!criteria.every((criterion) => criterionMatches(recipe, criterion))) return 0;
 
-  const cakeIntent = /\b(ciasto|ciasta|ciastko|ciastka|tort|tortu|sernik|sernika)\b/.test(normalisedQuery);
-  if (cakeIntent) {
-    if (recipe.category !== "deser") return 0;
-    const cakeWords = ["ciasto", "sernik", "drozdz", "tort", "brownie", "biszkopt", "wypiek"];
-    if (cakeWords.some((word) => text.includes(word))) score += 12;
-    if (recipe.tags.includes("pieczone")) score += 3;
-  }
-
-  const chalkaIntent = /\b(chalka|chalki)\b/.test(normalisedQuery);
-  if (chalkaIntent) {
-    const titleAndTags = normalise([recipe.title, ...recipe.tags].join(" "));
-    if (!titleAndTags.includes("chalka")) return 0;
-    score += 16;
-  }
-
-  const breadIntent = /\b(chleb|chleba|chleby|pieczywo|bochenek|bochenki)\b/.test(normalisedQuery);
-  if (breadIntent) {
-    const titleAndTags = normalise([recipe.title, ...recipe.tags].join(" "));
-    if (!/(chleb|pieczywo|bochenek)/.test(titleAndTags)) return 0;
-    score += 12;
-  }
-
-  tokens.forEach((token) => {
-    if (text.includes(token)) score += 2;
-    if (normalise(recipe.title).includes(token)) score += 3;
-    if (recipe.tags.some((tag) => normalise(tag).includes(token))) score += 2;
-  });
-
-  const minuteMatch = normalisedQuery.match(/do\s*(\d+)\s*min/);
-  if (minuteMatch && recipe.time <= Number(minuteMatch[1])) score += 6;
-  if (normalisedQuery.includes("szybk") && recipe.time <= 20) score += 4;
-  if (normalisedQuery.includes("lekka") && recipe.tags.includes("lekka kolacja")) score += 5;
-  if (normalisedQuery.includes("bez pieczenia") && recipe.tags.includes("bez pieczenia")) score += 6;
-  if (normalisedQuery.includes("na gosci") && recipe.tags.includes("na gości")) score += 5;
-  return score;
+  const core = recipeSearchCore(recipe);
+  return criteria.reduce((score, criterion) => {
+    if (criterion.type === "exact" && core.titleWords.has(criterion.value)) return score + 12;
+    if (criterion.type === "tag" && core.tags.includes(criterion.value)) return score + 8;
+    if (criterion.type === "term" && core.titleWords.has(criterion.value)) return score + 6;
+    if (criterion.type === "category") return score + 4;
+    if (criterion.type === "maxTime") return score + 2;
+    return score + 3;
+  }, 0);
 }
 
 function getVisibleRecipes() {
@@ -811,11 +860,11 @@ window.addEventListener("appinstalled", () => installButton.classList.add("hidde
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
-      const registration = await navigator.serviceWorker.register("./sw.js?v=15");
+      const registration = await navigator.serviceWorker.register("./sw.js?v=16");
       await registration.update();
       navigator.serviceWorker.addEventListener("controllerchange", () => {
-        if (sessionStorage.getItem("dobreJedzenieReloadedV15") === "1") return;
-        sessionStorage.setItem("dobreJedzenieReloadedV15", "1");
+        if (sessionStorage.getItem("dobreJedzenieReloadedV16") === "1") return;
+        sessionStorage.setItem("dobreJedzenieReloadedV16", "1");
         window.location.reload();
       });
     } catch (error) {

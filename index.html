@@ -12,7 +12,7 @@
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icons/icon-192-v14.png" />
   <link rel="apple-touch-icon" href="./icons/icon-192-v14.png" />
-  <link rel="stylesheet" href="./styles.css?v=15" />
+  <link rel="stylesheet" href="./styles.css?v=16" />
 </head>
 <body>
   <div class="app-shell">
@@ -21,7 +21,7 @@
         <span class="brand-mark">D</span>
         <span>
           <strong>Dobre Jedzenie</strong>
-          <small>Twoje najlepsze przepisy keto i lowcarb</small>
+          <small>Twoje najlepsze przepisy keto i low carb</small>
         </span>
       </a>
       <button id="favoritesButton" class="icon-button" type="button" aria-label="Pokaż ulubione">
@@ -36,7 +36,7 @@
           <p class="eyebrow">Osobisty doradca kulinarny</p>
           <h1>Na co masz dziś ochotę?</h1>
           <p class="hero-copy">
-            Szukaj po ludzku. „Ciasto do kawy”, „lekka kolacja”, „coś kokosowego bez pieczenia” albo „obiad z kurczakiem”.
+            Wpisz nazwę przepisu albo konkretny tag, np. „ciasto”, „kokosowe”, „chleb”, „bez pieczenia” lub „do 15 minut”.
           </p>
 
           <form id="searchForm" class="search-box" role="search">
@@ -45,7 +45,7 @@
               id="searchInput"
               type="search"
               autocomplete="off"
-              placeholder="Np. ciasto, coś czekoladowego, lekka kolacja…"
+              placeholder="Nazwa lub tag, np. ciasto, kokosowe, chleb…"
             />
             <button type="submit">Znajdź</button>
           </form>
@@ -58,31 +58,22 @@
             <button class="filter-chip" data-filter="czekoladowe">Czekoladowe</button>
             <button class="filter-chip" data-filter="kokosowe">Kokosowe</button>
             <button class="filter-chip" data-filter="bez pieczenia">Bez pieczenia</button>
-            <button class="filter-chip" data-filter="dla gości">Dla gości</button>
+            <button class="filter-chip" data-filter="na gości">Na gości</button>
           </div>
         </div>
 
         <aside class="hero-aside">
-          <p class="eyebrow">Redakcja poleca</p>
-          <div class="hero-note-card">
-            <h2>Dzisiejsze kierunki</h2>
-            <ul class="hero-note-list">
-              <li><span>01</span> <button type="button" data-filter="ciasto">Ciasto do kawy</button></li>
-              <li><span>02</span> <button type="button" data-filter="na gości">Deser na gości</button></li>
-              <li><span>03</span> <button type="button" data-filter="lekka kolacja">Lekka kolacja</button></li>
-            </ul>
-            <p class="hero-note-copy">Kilka dobrych tropów zamiast stu przypadkowych wyników. Jak w porządnym magazynie, tylko użyteczniej.</p>
-          </div>
+          
         </aside>
       </section>
 
       <section class="section-block editorial-section">
         <div class="section-heading section-heading-editorial">
           <div>
-            <p class="eyebrow">Kierunki</p>
-            <h2>Zainspiruj się, a potem wybierz</h2>
+            <p class="eyebrow">Tagi</p>
+            <h2>Przeglądaj według konkretnych cech</h2>
           </div>
-          <p class="section-aside-copy">Zamiast kafelków z ikonkami — krótkie redakcyjne tropy, od których łatwo zacząć.</p>
+          <p class="section-aside-copy">Każdy wybór uruchamia dokładny tag i zawęża wyniki bez zgadywania intencji.</p>
         </div>
         <div id="moodGrid" class="editorial-grid"></div>
       </section>
@@ -107,10 +98,10 @@
       </section>
 
       <section class="section-block principles principles-editorial">
-        <p class="eyebrow">Zasada aplikacji</p>
-        <blockquote>Jeśli dania nie chce się zrobić drugi raz, nie trafia do kolekcji.</blockquote>
+        <p class="eyebrow">Jak działa wyszukiwarka</p>
+        <blockquote>Nazwa i tagi. Bez zgadywania.</blockquote>
         <p>
-          To nie jest katalog wszystkiego. To ma być półka z rzeczami, które naprawdę warto powtarzać.
+          Wpisz jeden lub kilka tagów. Każdy kolejny zawęża wyniki, np. „kokosowe bez pieczenia”.
         </p>
       </section>
 
@@ -118,7 +109,7 @@
     </main>
 
     <footer>
-      <p>Dobre Jedzenie · wersja 0.15</p>
+      <p>Dobre Jedzenie · wersja 0.16</p>
       <button id="installButton" class="install-button hidden" type="button">Zainstaluj aplikację</button>
     </footer>
   </div>
@@ -219,7 +210,7 @@ Przygotowanie:
     <button id="closeDialog" class="dialog-close" type="button" aria-label="Zamknij">×</button>
   </dialog>
 
-  <script src="./recipes.js?v=15"></script>
-  <script src="./app.js?v=15"></script>
+  <script src="./recipes.js?v=16"></script>
+  <script src="./app.js?v=16"></script>
 </body>
 </html>

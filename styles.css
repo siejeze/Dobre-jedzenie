@@ -440,3 +440,8 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:18px;pa
   text-decoration: none;
 }
 .recipe-source-link:hover { text-decoration: underline; }
+
+/* v16: simplified single-column search header */
+.hero-editorial { grid-template-columns: 1fr; }
+.hero-copy-wrap { max-width: 820px; }
+.hero-aside:empty { display: none; }
