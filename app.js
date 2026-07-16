@@ -16,8 +16,11 @@ const closeDialog = document.querySelector("#closeDialog");
 const favoritesButton = document.querySelector("#favoritesButton");
 const favoriteCount = document.querySelector("#favoriteCount");
 const installButton = document.querySelector("#installButton");
+const addRecipeMenuButton = document.querySelector("#addRecipeMenuButton");
 const clipboardAddButton = document.querySelector("#clipboardAddButton");
 const manualAddButton = document.querySelector("#manualAddButton");
+const addRecipeOptionsDialog = document.querySelector("#addRecipeOptionsDialog");
+const closeAddOptionsDialog = document.querySelector("#closeAddOptionsDialog");
 const addRecipeDialog = document.querySelector("#addRecipeDialog");
 const addRecipeForm = document.querySelector("#addRecipeForm");
 const recipeText = document.querySelector("#recipeText");
@@ -367,11 +370,15 @@ function toggleFavorite(id) {
 }
 
 function renderMoods() {
-  moodGrid.innerHTML = moods.map((mood) => `
-    <button class="mood-card" type="button" data-query="${escapeHtml(mood.query)}">
-      <span class="mood-icon" aria-hidden="true">${escapeHtml(mood.icon)}</span>
-      <span class="mood-name">${escapeHtml(mood.name)}</span>
-      <span class="mood-desc">${escapeHtml(mood.desc)}</span>
+  moodGrid.innerHTML = moods.map((mood, index) => `
+    <button class="editorial-pick" type="button" data-query="${escapeHtml(mood.query)}">
+      <span class="editorial-index">${String(index + 1).padStart(2, "0")}</span>
+      <span class="editorial-copy">
+        <span class="editorial-label">Kierunek</span>
+        <span class="editorial-title">${escapeHtml(mood.name)}</span>
+        <span class="editorial-desc">${escapeHtml(mood.desc)}</span>
+      </span>
+      <span class="editorial-arrow" aria-hidden="true">↗</span>
     </button>
   `).join("");
 }
@@ -476,13 +483,24 @@ async function readClipboard() {
   return navigator.clipboard.readText();
 }
 
+addRecipeMenuButton.addEventListener("click", () => {
+  addRecipeOptionsDialog.showModal();
+});
+closeAddOptionsDialog.addEventListener("click", () => addRecipeOptionsDialog.close());
+addRecipeOptionsDialog.addEventListener("click", (event) => {
+  const rect = addRecipeOptionsDialog.getBoundingClientRect();
+  if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) addRecipeOptionsDialog.close();
+});
+
 clipboardAddButton.addEventListener("click", async () => {
   clipboardAddButton.disabled = true;
   try {
     const text = await readClipboard();
     addRecipeFromText(text);
+    addRecipeOptionsDialog.close();
     document.querySelector(".results-section").scrollIntoView({ behavior: "smooth", block: "start" });
   } catch (error) {
+    addRecipeOptionsDialog.close();
     recipeText.value = "";
     addRecipeDialog.showModal();
     showToast(error.message || "Nie udało się odczytać przepisu. Wklej go ręcznie.");
@@ -491,7 +509,7 @@ clipboardAddButton.addEventListener("click", async () => {
   }
 });
 
-manualAddButton.addEventListener("click", () => { recipeText.value = ""; addRecipeDialog.showModal(); recipeText.focus(); });
+manualAddButton.addEventListener("click", () => { addRecipeOptionsDialog.close(); recipeText.value = ""; addRecipeDialog.showModal(); recipeText.focus(); });
 closeAddDialog.addEventListener("click", () => addRecipeDialog.close());
 pasteIntoEditorButton.addEventListener("click", async () => {
   try { recipeText.value = await readClipboard(); recipeText.focus(); }
@@ -557,11 +575,11 @@ window.addEventListener("appinstalled", () => installButton.classList.add("hidde
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
-      const registration = await navigator.serviceWorker.register("./sw.js?v=6");
+      const registration = await navigator.serviceWorker.register("./sw.js?v=7");
       await registration.update();
       navigator.serviceWorker.addEventListener("controllerchange", () => {
-        if (sessionStorage.getItem("dobreJedzenieReloadedV6") === "1") return;
-        sessionStorage.setItem("dobreJedzenieReloadedV6", "1");
+        if (sessionStorage.getItem("dobreJedzenieReloadedV7") === "1") return;
+        sessionStorage.setItem("dobreJedzenieReloadedV7", "1");
         window.location.reload();
       });
     } catch (error) {

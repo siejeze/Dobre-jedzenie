@@ -3,13 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#f4eee5" />
+  <meta name="theme-color" content="#FDFBF7" />
   <meta name="description" content="Osobisty doradca dobrego, prostego jedzenia bez mąki i cukru." />
   <title>Dobre Jedzenie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icons/icon-192.png" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <link rel="stylesheet" href="./styles.css?v=6" />
+  <link rel="stylesheet" href="./styles.css?v=7" />
 </head>
 <body>
   <div class="app-shell">
@@ -28,44 +31,59 @@
     </header>
 
     <main>
-      <section class="hero">
-        <p class="eyebrow">Osobisty doradca kulinarny</p>
-        <h1>Na co masz dziś ochotę?</h1>
-        <p class="hero-copy">
-          Napisz po ludzku: „coś czekoladowego bez pieczenia”, „lekka kolacja”
-          albo „obiad z kurczakiem do pół godziny”.
-        </p>
+      <section class="hero hero-editorial">
+        <div class="hero-copy-wrap">
+          <p class="eyebrow">Osobisty doradca kulinarny</p>
+          <h1>Na co masz dziś ochotę?</h1>
+          <p class="hero-copy">
+            Szukaj po ludzku. „Ciasto do kawy”, „lekka kolacja”, „coś kokosowego bez pieczenia” albo „obiad z kurczakiem do pół godziny”.
+          </p>
 
-        <form id="searchForm" class="search-box" role="search">
-          <label class="sr-only" for="searchInput">Wyszukaj przepis</label>
-          <input
-            id="searchInput"
-            type="search"
-            autocomplete="off"
-            placeholder="Np. coś kremowego z mascarpone…"
-          />
-          <button type="submit">Znajdź</button>
-        </form>
+          <form id="searchForm" class="search-box" role="search">
+            <label class="sr-only" for="searchInput">Wyszukaj przepis</label>
+            <input
+              id="searchInput"
+              type="search"
+              autocomplete="off"
+              placeholder="Np. ciasto, coś czekoladowego, lekka kolacja…"
+            />
+            <button type="submit">Znajdź</button>
+          </form>
 
-        <div class="quick-filters" aria-label="Szybkie filtry">
-          <button class="filter-chip" data-filter="do 15 minut">Do 15 minut</button>
-          <button class="filter-chip" data-filter="lekka kolacja">Lekka kolacja</button>
-          <button class="filter-chip" data-filter="czekoladowe">Czekoladowe</button>
-          <button class="filter-chip" data-filter="kokosowe">Kokosowe</button>
-          <button class="filter-chip" data-filter="ciasto">Ciasta</button>
-          <button class="filter-chip" data-filter="bez pieczenia">Bez pieczenia</button>
-          <button class="filter-chip" data-filter="na gości">Na gości</button>
-        </div>
-      </section>
-
-      <section class="section-block">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Szybki wybór</p>
-            <h2>Wybierz potrzebę, nie segregator</h2>
+          <div class="quick-filters" aria-label="Szybkie filtry">
+            <button class="filter-chip" data-filter="ciasto">Ciasta</button>
+            <button class="filter-chip" data-filter="do 15 minut">Do 15 minut</button>
+            <button class="filter-chip" data-filter="lekka kolacja">Lekka kolacja</button>
+            <button class="filter-chip" data-filter="czekoladowe">Czekoladowe</button>
+            <button class="filter-chip" data-filter="kokosowe">Kokosowe</button>
+            <button class="filter-chip" data-filter="bez pieczenia">Bez pieczenia</button>
+            <button class="filter-chip" data-filter="na gości">Na gości</button>
           </div>
         </div>
-        <div id="moodGrid" class="mood-grid"></div>
+
+        <aside class="hero-aside">
+          <p class="eyebrow">Redakcja poleca</p>
+          <div class="hero-note-card">
+            <h2>Dzisiejsze kierunki</h2>
+            <ul class="hero-note-list">
+              <li><span>01</span> <button type="button" data-filter="ciasto">Ciasto do kawy</button></li>
+              <li><span>02</span> <button type="button" data-filter="na gości">Deser na gości</button></li>
+              <li><span>03</span> <button type="button" data-filter="lekka kolacja">Lekka kolacja</button></li>
+            </ul>
+            <p class="hero-note-copy">Kilka dobrych tropów zamiast stu przypadkowych wyników. Jak w porządnym magazynie, tylko użyteczniej.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section-block editorial-section">
+        <div class="section-heading section-heading-editorial">
+          <div>
+            <p class="eyebrow">Kierunki</p>
+            <h2>Zainspiruj się, a potem wybierz</h2>
+          </div>
+          <p class="section-aside-copy">Zamiast kafelków z ikonkami — krótkie redakcyjne tropy, od których łatwo zacząć.</p>
+        </div>
+        <div id="moodGrid" class="editorial-grid"></div>
       </section>
 
       <section class="section-block results-section" aria-live="polite">
@@ -83,11 +101,11 @@
         <div id="emptyState" class="empty-state hidden">
           <div class="empty-icon">⌁</div>
           <h3>Tu na razie cisza w lodówce</h3>
-          <p>Spróbuj krócej: „kurczak”, „kokos”, „sałatka” albo „bez pieczenia”.</p>
+          <p>Spróbuj krócej: „ciasto”, „kurczak”, „kokos”, „sałatka” albo „bez pieczenia”.</p>
         </div>
       </section>
 
-      <section class="section-block principles">
+      <section class="section-block principles principles-editorial">
         <p class="eyebrow">Zasada aplikacji</p>
         <blockquote>Jeśli dania nie chce się zrobić drugi raz, nie trafia do kolekcji.</blockquote>
         <p>
@@ -97,24 +115,44 @@
     </main>
 
     <footer>
-      <p>Dobre Jedzenie · wersja 0.6</p>
+      <p>Dobre Jedzenie · wersja 0.7</p>
       <button id="installButton" class="install-button hidden" type="button">Zainstaluj aplikację</button>
     </footer>
   </div>
 
   <div class="quick-add-dock" aria-label="Dodawanie przepisu">
-    <button id="clipboardAddButton" class="quick-add-button" type="button">
+    <button id="addRecipeMenuButton" class="quick-add-button" type="button">
       <span class="quick-add-icon" aria-hidden="true">＋</span>
-      <span>Dodaj ze schowka</span>
+      <span>Dodaj przepis</span>
     </button>
     <div class="quick-add-links">
-      <button id="manualAddButton" class="manual-add-link" type="button">Wpisz ręcznie</button>
-      <span class="quick-add-separator" aria-hidden="true">·</span>
       <button id="transferRecipesButton" class="manual-add-link" type="button">Przenieś moje przepisy</button>
     </div>
   </div>
 
   <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <dialog id="addRecipeOptionsDialog" class="add-options-dialog">
+    <div class="add-options-content">
+      <div class="add-dialog-header">
+        <div>
+          <p class="eyebrow">Nowy przepis</p>
+          <h2>Jak chcesz go dodać?</h2>
+        </div>
+        <button id="closeAddOptionsDialog" class="simple-close" type="button" aria-label="Zamknij">×</button>
+      </div>
+      <div class="option-stack">
+        <button id="clipboardAddButton" class="choice-card" type="button">
+          <strong>Dodaj ze schowka</strong>
+          <small>Kopiujesz cały przepis i gotowe.</small>
+        </button>
+        <button id="manualAddButton" class="choice-card" type="button">
+          <strong>Wpisz ręcznie</strong>
+          <small>Wklej lub wpisz przepis w edytorze.</small>
+        </button>
+      </div>
+    </div>
+  </dialog>
 
   <dialog id="addRecipeDialog" class="add-recipe-dialog">
     <form id="addRecipeForm" method="dialog">
@@ -144,8 +182,6 @@ Przygotowanie:
       </div>
     </form>
   </dialog>
-
-
 
   <dialog id="backupDialog" class="backup-dialog">
     <div class="backup-dialog-content">
@@ -180,7 +216,7 @@ Przygotowanie:
     <button id="closeDialog" class="dialog-close" type="button" aria-label="Zamknij">×</button>
   </dialog>
 
-  <script src="./recipes.js?v=6"></script>
-  <script src="./app.js?v=6"></script>
+  <script src="./recipes.js?v=7"></script>
+  <script src="./app.js?v=7"></script>
 </body>
 </html>
