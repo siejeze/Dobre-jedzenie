@@ -12,7 +12,7 @@
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icons/icon-192-v14.png" />
   <link rel="apple-touch-icon" href="./icons/icon-192-v14.png" />
-  <link rel="stylesheet" href="./styles.css?v=16" />
+  <link rel="stylesheet" href="./styles.css?v=17" />
 </head>
 <body>
   <div class="app-shell">
@@ -50,15 +50,13 @@
             <button type="submit">Znajdź</button>
           </form>
 
-          <div class="quick-filters" aria-label="Szybkie filtry">
+          <div class="quick-filters" aria-label="Główne kategorie przepisów">
+            <button class="filter-chip" data-filter="śniadanie">Śniadania</button>
+            <button class="filter-chip" data-filter="obiad">Obiady</button>
+            <button class="filter-chip" data-filter="kolacja">Kolacje</button>
+            <button class="filter-chip" data-filter="deser">Desery</button>
             <button class="filter-chip" data-filter="ciasto">Ciasta</button>
-            <button class="filter-chip" data-filter="chleb">Chleb</button>
-            <button class="filter-chip" data-filter="do 15 minut">Do 15 minut</button>
-            <button class="filter-chip" data-filter="lekka kolacja">Lekka kolacja</button>
-            <button class="filter-chip" data-filter="czekoladowe">Czekoladowe</button>
-            <button class="filter-chip" data-filter="kokosowe">Kokosowe</button>
-            <button class="filter-chip" data-filter="bez pieczenia">Bez pieczenia</button>
-            <button class="filter-chip" data-filter="dla gości">Dla gości</button>
+            <button class="filter-chip" data-filter="chleb">Chleby</button>
           </div>
         </div>
 
@@ -68,7 +66,13 @@
       </section>
 
       <section class="section-block editorial-section">
-       
+        <div class="section-heading section-heading-editorial">
+          <div>
+            <p class="eyebrow">Tagi</p>
+            <h2>Przeglądaj według konkretnych cech</h2>
+          </div>
+          <p class="section-aside-copy">Każdy wybór uruchamia dokładny tag i zawęża wyniki bez zgadywania intencji.</p>
+        </div>
         <div id="moodGrid" class="editorial-grid"></div>
       </section>
 
@@ -103,7 +107,7 @@
     </main>
 
     <footer>
-      <p>Dobre Jedzenie · wersja 0.16</p>
+      <p>Dobre Jedzenie · wersja 0.17</p>
       <button id="installButton" class="install-button hidden" type="button">Zainstaluj aplikację</button>
     </footer>
   </div>
@@ -204,7 +208,7 @@ Przygotowanie:
     <button id="closeDialog" class="dialog-close" type="button" aria-label="Zamknij">×</button>
   </dialog>
 
-  <script src="./recipes.js?v=16"></script>
-  <script src="./app.js?v=16"></script>
+  <script src="./recipes.js?v=17"></script>
+  <script src="./app.js?v=17"></script>
 </body>
 </html>

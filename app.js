@@ -430,7 +430,9 @@ function buildSearchCriteria(query) {
     .forEach((token) => {
       if (token === "ciasto" || token === "ciasta" || token === "tort" || token === "brownie" || token === "biszkopt") {
         criteria.push({ type: "cake", value: "ciasto" });
-      } else if (["sniadanie", "obiad", "kolacja", "deser"].includes(token)) {
+      } else if (token === "deser") {
+        criteria.push({ type: "dessert", value: "deser" });
+      } else if (["sniadanie", "obiad", "kolacja"].includes(token)) {
         criteria.push({ type: "category", value: token });
       } else if (token === "chalka") {
         criteria.push({ type: "exact", value: "chalka" });
@@ -453,6 +455,10 @@ function criterionMatches(recipe, criterion) {
 
   if (criterion.type === "maxTime") return Number(recipe.time) <= criterion.value;
   if (criterion.type === "category") return core.category === criterion.value;
+  if (criterion.type === "dessert") {
+    const isCake = core.tags.includes("ciasto") || ["sernik", "tort", "brownie", "biszkopt", "chalka", "drozdzowki"].some((word) => core.titleWords.has(word));
+    return core.category === "deser" && !isCake;
+  }
   if (criterion.type === "tag") return core.tags.includes(criterion.value);
 
   if (criterion.type === "cake") {
@@ -477,7 +483,7 @@ function scoreRecipe(recipe, query) {
     if (criterion.type === "exact" && core.titleWords.has(criterion.value)) return score + 12;
     if (criterion.type === "tag" && core.tags.includes(criterion.value)) return score + 8;
     if (criterion.type === "term" && core.titleWords.has(criterion.value)) return score + 6;
-    if (criterion.type === "category") return score + 4;
+    if (criterion.type === "category" || criterion.type === "dessert") return score + 4;
     if (criterion.type === "maxTime") return score + 2;
     return score + 3;
   }, 0);
@@ -860,11 +866,11 @@ window.addEventListener("appinstalled", () => installButton.classList.add("hidde
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
-      const registration = await navigator.serviceWorker.register("./sw.js?v=16");
+      const registration = await navigator.serviceWorker.register("./sw.js?v=17");
       await registration.update();
       navigator.serviceWorker.addEventListener("controllerchange", () => {
-        if (sessionStorage.getItem("dobreJedzenieReloadedV16") === "1") return;
-        sessionStorage.setItem("dobreJedzenieReloadedV16", "1");
+        if (sessionStorage.getItem("dobreJedzenieReloadedV17") === "1") return;
+        sessionStorage.setItem("dobreJedzenieReloadedV17", "1");
         window.location.reload();
       });
     } catch (error) {
