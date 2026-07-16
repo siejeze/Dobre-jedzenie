@@ -151,11 +151,11 @@ window.RECIPES = [
     tags: ["śniadanie", "do 15 minut", "słodkie", "owoce", "mascarpone"],
     ingredients: [
       "2 jajka", "1 czubata łyżka mascarpone", "garść borówek",
-      "wanilia", "słodzidło do smaku", "masło do smażenia"
+      "wanilia", "1–2 łyżki Erevia Powder, do smaku", "masło do smażenia"
     ],
     steps: [
       "Oddziel białka i ubij je na miękką pianę.",
-      "Żółtka wymieszaj z mascarpone, wanilią i słodzidłem.",
+      "Żółtka wymieszaj z mascarpone, wanilią i Erevią.",
       "Delikatnie połącz z pianą.",
       "Smaż powoli pod przykryciem, dodając borówki pod koniec."
     ],
@@ -192,10 +192,10 @@ window.RECIPES = [
     tags: ["śniadanie", "do 15 minut", "bez pieczenia", "owoce", "orzechy"],
     ingredients: [
       "200 g skyru", "1 łyżka mascarpone", "garść malin",
-      "garść orzechów", "wanilia", "słodzidło do smaku"
+      "garść orzechów", "4–8 kropli N!CK'S Stevia Drops Vanilla albo Erevia Powder do smaku"
     ],
     steps: [
-      "Skyr wymieszaj z mascarpone, wanilią i słodzidłem.",
+      "Skyr wymieszaj z mascarpone i N!CK'S Stevia Drops Vanilla albo Erevią.",
       "Dodaj maliny oraz posiekane orzechy.",
       "Jedz od razu albo zabierz w słoiku."
     ],
@@ -320,7 +320,7 @@ window.RECIPES = [
     ingredients: [
       "1 dojrzałe awokado", "250 g mascarpone", "2 łyżki kakao",
       "2 łyżki masła z orzechów laskowych", "1 łyżeczka kawy rozpuszczonej w odrobinie wody",
-      "słodzidło w pudrze", "wanilia", "szczypta soli", "opcjonalnie porzeczki"
+      "20–30 g Erevia Powder albo 6–10 kropli N!CK'S Stevia Drops Vanilla", "szczypta soli", "opcjonalnie porzeczki"
     ],
     steps: [
       "Wszystkie składniki poza owocami zmiksuj idealnie gładko.",
@@ -338,16 +338,16 @@ window.RECIPES = [
     time: 15,
     difficulty: "łatwy",
     tone: ["#f4ead8", "#d4bc9b"],
-    summary: "Kokos świadomy i elegancki, nie przypadkowy olej kokosowy w bochenku.",
+    summary: "Kremowy deser o wyraźnym smaku kokosu, z chrupiącymi orzechami i delikatną wanilią.",
     tags: ["deser", "kokosowe", "bez pieczenia", "do 15 minut", "na gości", "kremowe"],
     ingredients: [
       "250 g mascarpone", "150 ml śmietanki 36%", "3 łyżki wiórków kokosowych",
-      "2 łyżki kremu kokosowego", "wanilia", "słodzidło w pudrze",
+      "2 łyżki kremu kokosowego", "25–35 g Erevia Powder albo 8–12 kropli N!CK'S Stevia Drops Vanilla",
       "prażone migdały lub orzechy laskowe"
     ],
     steps: [
       "Śmietankę ubij miękko.",
-      "Mascarpone wymieszaj z kremem kokosowym, wanilią i słodzidłem.",
+      "Mascarpone wymieszaj z kremem kokosowym i wybranym słodzidłem.",
       "Połącz delikatnie ze śmietanką i wiórkami.",
       "Przełóż do pucharków, posyp prażonymi orzechami i schłódź."
     ],
@@ -365,12 +365,12 @@ window.RECIPES = [
     tags: ["deser", "kokosowe", "orzeźwiające", "bez pieczenia", "na gości"],
     ingredients: [
       "250 ml śmietanki 30%", "150 ml mleczka kokosowego",
-      "żelatyna na 400 ml płynu", "wanilia", "słodzidło",
+      "żelatyna na 400 ml płynu", "wanilia", "30–40 g Erevia Powder albo 10–15 kropli N!CK'S Stevia Drops Vanilla",
       "150 g malin", "odrobina soku z cytryny"
     ],
     steps: [
       "Żelatynę przygotuj zgodnie z instrukcją.",
-      "Śmietankę z mleczkiem kokosowym podgrzej z wanilią i słodzidłem.",
+      "Śmietankę z mleczkiem kokosowym podgrzej z wanilią i Erevią. Jeśli używasz N!CK'S Drops, dodaj je dopiero po lekkim przestudzeniu.",
       "Dodaj żelatynę, rozlej do naczynek i schłódź.",
       "Maliny krótko podgrzej z cytryną i podaj jako kwaśny sos."
     ],
@@ -388,11 +388,11 @@ window.RECIPES = [
     tags: ["deser", "ciasto", "sernik", "orzeźwiające", "awokado", "bez pieczenia", "na gości", "kremowe"],
     ingredients: [
       "1 awokado", "250 g mascarpone lub serka śmietankowego",
-      "sok i skórka z 1 limonki", "słodzidło w pudrze",
+      "sok i skórka z 1 limonki", "35–45 g Erevia Powder albo 10–15 kropli N!CK'S Stevia Drops Vanilla",
       "wanilia", "żelatyna lub agar według preferencji"
     ],
     steps: [
-      "Awokado zmiksuj z serem, limonką, wanilią i słodzidłem.",
+      "Awokado zmiksuj z serem, limonką i wybranym słodzidłem.",
       "Dodaj przygotowaną żelatynę albo agar.",
       "Przełóż do małych foremek i schłódź kilka godzin."
     ],
@@ -410,11 +410,11 @@ window.RECIPES = [
     tags: ["deser", "czekoladowe", "bez pieczenia", "do 15 minut", "na gości", "kremowe"],
     ingredients: [
       "250 g mascarpone", "150 ml śmietanki 36%", "80 g dobrej gorzkiej czekolady bez cukru",
-      "słodzidło w pudrze", "wanilia", "szczypta soli"
+      "30–40 g Erevia Powder albo 6–10 kropli N!CK'S Stevia Drops Vanilla", "szczypta soli"
     ],
     steps: [
       "Czekoladę rozpuść i lekko przestudź.",
-      "Mascarpone krótko zmiksuj ze słodzidłem i wanilią.",
+      "Mascarpone krótko zmiksuj z Erevią albo N!CK'S Drops.",
       "Dodaj czekoladę, a potem delikatnie wmieszaj ubitą śmietankę.",
       "Schłódź przed podaniem."
     ],
@@ -431,11 +431,11 @@ window.RECIPES = [
     summary: "Prosty deser warstwowy, który wygląda znacznie bardziej pracowicie, niż jest w rzeczywistości.",
     tags: ["deser", "owocowe", "bez pieczenia", "do 15 minut", "na gości", "orzeźwiające"],
     ingredients: [
-      "250 g mascarpone", "200 g skyru", "wanilia", "słodzidło",
+      "250 g mascarpone", "200 g skyru", "8–12 kropli N!CK'S Stevia Drops Vanilla albo 30–40 g Erevia Powder",
       "250 g truskawek", "1 łyżeczka soku z cytryny", "posiekane orzechy"
     ],
     steps: [
-      "Mascarpone wymieszaj ze skyrem, wanilią i słodzidłem.",
+      "Mascarpone wymieszaj ze skyrem i wybranym słodzidłem.",
       "Truskawki rozgnieć z cytryną.",
       "Układaj w słoiczkach warstwy kremu, owoców i orzechów.",
       "Schłódź lub podaj od razu."
@@ -453,16 +453,16 @@ window.RECIPES = [
     summary: "Bogate, waniliowe i bez wodnistego posmaku domowych lodów na skróty.",
     tags: ["deser", "lody", "orzeźwiające", "bez pieczenia", "na lato"],
     ingredients: [
-      "250 ml śmietanki 36%", "150 g mascarpone", "wanilia",
-      "słodzidło w pudrze", "szczypta soli", "opcjonalnie odrobina inuliny"
+      "250 ml śmietanki 36%", "150 g mascarpone",
+      "10–16 kropli N!CK'S Stevia Drops Vanilla", "szczypta soli", "8–10 g inuliny dla bardziej kremowej struktury"
     ],
     steps: [
       "Wszystkie składniki schłódź.",
-      "Ubij śmietankę miękko i połącz z mascarpone, wanilią oraz słodzidłem.",
+      "Ubij śmietankę miękko i połącz z mascarpone, N!CK'S Stevia Drops Vanilla oraz inuliną.",
       "Zamrażaj, mieszając co 40 minut przez pierwsze 2–3 godziny.",
       "Wyjmij 10 minut przed podaniem."
     ],
-    tip: "Erytrytol potrafi krystalizować. Mieszanka erytrytolu ze stewią zwykle daje gładszy efekt."
+    tip: "Do lodów najlepsze są N!CK'S Stevia Drops Vanilla, bo nie tworzą kryształków. Erevię można dodać tylko w małej ilości, jeśli potrzebujesz mocniejszej słodyczy."
   },
   {
     id: "fit-snickers-bez-pieczenia",
@@ -480,7 +480,7 @@ window.RECIPES = [
       "opcjonalnie 1–2 łyżeczki bezzapachowego oleju kokosowego, tylko gdy kruszonka jest zbyt sucha",
       "120 g mascarpone",
       "80 g gładkiego masła orzechowego 100%",
-      "słodzidło w pudrze do smaku, zależnie od użytej czekolady",
+      "Erevia Powder do smaku, zwykle 15–25 g, zależnie od użytej czekolady",
       "solidna szczypta soli morskiej",
       "40–50 g prażonych orzeszków ziemnych, najlepiej lekko solonych"
     ],
@@ -488,7 +488,7 @@ window.RECIPES = [
       "Wyłóż papierem małą formę około 10 × 15 cm albo tortownicę 16–17 cm.",
       "Czekoladę rozpuść łagodnie w kąpieli wodnej. Wymieszaj z mąką migdałową. Jeśli masa nie daje się docisnąć i rozsypuje się, dodaj najpierw tylko 1 łyżeczkę bezzapachowego oleju kokosowego.",
       "Połowę czekoladowej kruszonki przełóż do formy i mocno dociśnij przez arkusz papieru. Wstaw do lodówki na czas przygotowania kremu.",
-      "Mascarpone podgrzewaj na najmniejszym ogniu tylko do chwili, gdy stanie się miękkie i kremowe. Zdejmij z ognia, dodaj masło orzechowe, sól i ewentualne słodzidło. Wymieszaj na gładki, gęsty krem.",
+      "Mascarpone podgrzewaj na najmniejszym ogniu tylko do chwili, gdy stanie się miękkie i kremowe. Zdejmij z ognia, dodaj masło orzechowe, sól i ewentualnie Erevię. Wymieszaj na gładki, gęsty krem.",
       "Rozsmaruj krem na schłodzonym spodzie. Posyp orzeszkami i lekko wciśnij je w masę.",
       "Rozsyp pozostałą kruszonkę, przykryj papierem i delikatnie dociśnij, żeby połączyła się z kremem.",
       "Schładzaj co najmniej 3 godziny, najlepiej przez noc. Krój bardzo ostrym nożem ogrzanym w gorącej wodzie."
@@ -523,7 +523,7 @@ window.RECIPES = [
     ingredients: [
       "200 g mascarpone",
       "50 g masła",
-      "60 g erytrytolu lub mieszanki erytrytolu ze stewią, do smaku",
+      "60 g Erevia Powder, do smaku",
       "60 g błonnika bambusowego",
       "40 g budyniu waniliowego bez cukru",
       "8 dużych jaj, osobno białka i żółtka",
@@ -535,7 +535,7 @@ window.RECIPES = [
     steps: [
       "Formę około 22 × 33 cm wyłóż papierem. Piekarnik nagrzej do 150°C z termoobiegiem.",
       "Mascarpone i 50 g masła włóż do małego rondelka. Podgrzewaj bardzo delikatnie, mieszając, tylko do uzyskania jednolitej masy. Odstaw do przestudzenia.",
-      "Białka ubij ze słodzidłem na sztywną, błyszczącą pianę.",
+      "Białka ubij z Erevią na sztywną, błyszczącą pianę.",
       "Dodaj żółtka, błonnik bambusowy i budyń. Połącz krótko na niskich obrotach.",
       "Powoli wlewaj letnią masę mascarpone z masłem, mieszając na małej prędkości. Na końcu wmieszaj proszek do pieczenia.",
       "Przełóż masę do formy i wyrównaj. Na wierzchu rozłóż osuszone truskawki i borówki.",
@@ -580,12 +580,12 @@ window.RECIPES = [
       "40 g mascarpone, w temperaturze pokojowej",
       "1 całe jajko i 3 żółtka, w temperaturze pokojowej",
       "70 g miękkiego masła",
-      "40–50 g słodzidła w pudrze, najlepiej mieszanki erytrytolu ze stewią",
+      "40–50 g Erevia Powder",
       "1 łyżeczka wanilii",
       "250 g twarogu półtłustego lub tłustego",
       "100 g mascarpone do masy serowej",
       "1 żółtko do masy serowej",
-      "30–40 g słodzidła w pudrze do masy serowej",
+      "30–40 g Erevia Powder do masy serowej",
       "1/2 łyżeczki wanilii i odrobina skórki cytrynowej",
       "150–180 g truskawek, pokrojonych i bardzo dobrze osuszonych",
       "1 żółtko wymieszane z 1 łyżką śmietanki do posmarowania"
@@ -593,12 +593,12 @@ window.RECIPES = [
     steps: [
       "Wymieszaj 100 ml ciepłej wody z drożdżami i 5 g cukru albo miodu. Odstaw na 8–10 minut, aż zaczyn wyraźnie się spieni.",
       "W osobnej miseczce rozetrzyj 40 g mascarpone ze śmietanką na gładki, płynny krem. Nie podgrzewaj go mocniej niż do temperatury dłoni.",
-      "Do misy wsyp MK Gold, błonnik bambusowy i słodzidło. Dodaj całe jajko, 3 żółtka, wanilię oraz zaczyn. Wyrabiaj hakiem 6–8 minut na średnio niskich obrotach.",
+      "Do misy wsyp MK Gold, błonnik bambusowy i Erevię. Dodaj całe jajko, 3 żółtka, wanilię oraz zaczyn. Wyrabiaj hakiem 6–8 minut na średnio niskich obrotach.",
       "Dodawaj krem śmietankowo-mascarpone w 3 porcjach, za każdym razem wyrabiając do wchłonięcia. Wyrabiaj jeszcze 3 minuty.",
       "Dodawaj miękkie masło po łyżce. Po dodaniu całego masła wyrabiaj 8–10 minut. Ciasto ma być bardzo miękkie i lekko klejące, ale powinno zbierać się wokół haka. Nie dosypuj od razu mieszanki.",
       "Przykryj i odstaw ciasto na 10 minut. W tym czasie błonniki wchłoną wilgoć. Dopiero potem oceń konsystencję: jeśli ciasto jest kruche i pęka, dodaj dokładnie 10 ml wody; jeśli rozpływa się jak gęste ciasto ucierane, dodaj 5 g MK Gold. Nie wprowadzaj obu korekt naraz.",
       "Przykryj i zostaw w ciepłym miejscu na 75–100 minut. Bogate ciasto nie musi podwoić objętości; wystarczy, że zwiększy ją mniej więcej o połowę i stanie się wyraźnie lżejsze.",
-      "Twaróg utrzyj z 100 g mascarpone, żółtkiem, słodzidłem, wanilią i skórką cytrynową. Truskawki pokrój i dokładnie osusz.",
+      "Twaróg utrzyj z 100 g mascarpone, żółtkiem, Erevią, wanilią i skórką cytrynową. Truskawki pokrój i dokładnie osusz.",
       "Podziel ciasto na 6 części. Wilgotnymi albo lekko natłuszczonymi dłońmi uformuj krążki z wgłębieniem. Nałóż masę serową i truskawki.",
       "Ułóż na papierze do pieczenia, przykryj i zostaw na 40–55 minut. Posmaruj żółtkiem ze śmietanką.",
       "Piecz 18–22 minuty w 170°C, góra–dół, bez termoobiegu. Wyjmij, gdy są złote, ale jeszcze miękkie przy lekkim naciśnięciu.",
@@ -621,15 +621,156 @@ window.RECIPES = [
     ],
     sourceNote: "Receptura autorska łącząca drożdżową bazę MK Gold z techniką ciast mascarpone–bambus Przeketonowej. Nie jest kopią żadnego pojedynczego przepisu. Przed oznaczeniem jej jako ostatecznego pewniaka warto wykonać jeden kontrolny wypiek na Twojej partii mieszanki."
   }
+  ,{
+    id: "chleb-codzienny-kminek-czarnuszka",
+    title: "Chleb codzienny z kminkiem i czarnuszką",
+    category: "śniadanie",
+    emoji: "🍞",
+    time: 150,
+    difficulty: "łatwy",
+    tone: ["#D9C3A2", "#8A6C4C"],
+    summary: "Najbardziej uniwersalny chleb na MK Gold: łagodniejszy, mniej gumowy, z kminkiem i odrobiną czarnuszki.",
+    tags: ["chleb", "pieczywo", "MK Gold", "kminek", "czarnuszka", "drożdżowe", "na co dzień"],
+    ingredients: [
+      "200 g MK Gold Bread Mix",
+      "10 g drobnej mąki migdałowej",
+      "4–5 g suchych drożdży albo 15 g świeżych",
+      "5 g cukru, miodu lub inuliny do uruchomienia drożdży",
+      "175 ml ciepłej wody, maksymalnie 40°C",
+      "40 g gęstego jogurtu greckiego albo kwaśnej śmietany 18%",
+      "1 jajko, w temperaturze pokojowej",
+      "25 g miękkiego masła",
+      "1 płaska łyżeczka kminku, lekko roztartego w dłoniach",
+      "1/4–1/3 łyżeczki czarnuszki",
+      "1 łyżeczka octu jabłkowego"
+    ],
+    steps: [
+      "Wymieszaj wodę, drożdże i cukier, miód albo inulinę. Odstaw na 8–10 minut, aż zaczyn się spieni.",
+      "W misie połącz MK Gold, mąkę migdałową, kminek i czarnuszkę.",
+      "Dodaj jajko, jogurt, ocet i zaczyn. Wyrabiaj hakiem 7–8 minut.",
+      "Dodawaj miękkie masło po kawałku i wyrabiaj jeszcze 5–7 minut. Ciasto powinno być miękkie, sprężyste i lekko klejące.",
+      "Odstaw na 10 minut. Jeśli po tym czasie ciasto pęka i jest wyraźnie suche, dodaj 1 łyżkę wody; jeśli się rozpływa, dodaj 5 g MK Gold.",
+      "Uformuj bochenek, włóż do keksówki około 25 cm i pozostaw pod przykryciem na 70–100 minut. Powinien zwiększyć objętość o mniej więcej połowę, niekoniecznie ją podwoić.",
+      "Wstaw do zimnego piekarnika, ustaw 175°C, góra–dół. Od chwili osiągnięcia temperatury piecz około 45–50 minut.",
+      "Wyjmij z formy i studź na kratce co najmniej 90 minut. Krojenie ciepłego bochenka ściska miękisz i daje fałszywe wrażenie gumowatości."
+    ],
+    tip: "Kminek powinien być wyczuwalny, ale czarnuszka tylko dopowiadać smak. Jej nadmiar szybko przejmuje cały bochenek.",
+    whyItWorks: [
+      { title: "Jogurt lub kwaśna śmietana", text: "Wnoszą wodę, tłuszcz i łagodną kwasowość. Zmiękczają wysokobiałkowy miękisz i wyciszają specyficzny posmak mieszanki." },
+      { title: "10 g mąki migdałowej", text: "Delikatnie przerywa bardzo zwartą sieć glutenu. Chleb staje się mniej sprężysto-gumowy, ale nadal dobrze rośnie." },
+      { title: "Masło dodane później", text: "Najpierw pozwalamy białku pszennemu utworzyć strukturę, a dopiero potem ją zmiękczamy. Wrzucone od razu masło może ograniczyć wyrastanie." },
+      { title: "Ocet jabłkowy", text: "Nie powinien być wyczuwalny. Zaokrągla smak i zmniejsza wrażenie typowego wysokobiałkowego pieczywa." },
+      { title: "Kminek i czarnuszka", text: "Kminek nadaje pieczywu klasyczny, chlebowy profil. Czarnuszka jest mocniejsza, dlatego używamy jej znacznie mniej." }
+    ],
+    variants: [
+      { title: "Bardziej żytni w smaku", text: "Dodaj 1/2 łyżeczki mielonej kolendry i zwiększ kminek do 1,5 łyżeczki. Nie dodawaj więcej czarnuszki." },
+      { title: "Bez nabiału", text: "Jogurt zastąp 30 ml dodatkowej wody i zwiększ masło do 30 g albo użyj oliwy. Chleb będzie trochę bardziej sprężysty i mniej delikatny." },
+      { title: "Bułki", text: "Podziel ciasto na 6 części, wyrastaj około 45–60 minut i piecz 22–26 minut w 180°C." }
+    ],
+    sourceNote: "Autorska modyfikacja bazowego chleba MK Gold. Proporcje mieszanki, drożdży i jajka wychodzą od receptury producenta, ale jogurt, mąka migdałowa, ocet oraz przyprawy służą zmiękczeniu struktury i poprawie smaku.",
+    sourceLabel: "Bazowa receptura chleba — MK Nutrition",
+    sourceUrl: "https://mknutrition.pl/chleb-mk-gold-bread-mix/"
+  },
+  {
+    id: "chleb-tostowy-miekki-mkgold",
+    title: "Miękki chleb tostowy na MK Gold",
+    category: "śniadanie",
+    emoji: "🍞",
+    time: 150,
+    difficulty: "łatwy",
+    tone: ["#E8D5B5", "#B88B5C"],
+    summary: "Jasny, miękki i łatwy do cienkiego krojenia. Dobra baza do tostów, kanapek i zapiekanek.",
+    tags: ["chleb", "pieczywo", "MK Gold", "tostowy", "miękki", "drożdżowe"],
+    ingredients: [
+      "200 g MK Gold Bread Mix",
+      "4–5 g suchych drożdży",
+      "5 g cukru, miodu lub inuliny do drożdży",
+      "175 ml ciepłej wody, maksymalnie 40°C",
+      "1 jajko i 1 żółtko, w temperaturze pokojowej",
+      "30 g mascarpone albo gęstego serka śmietankowego",
+      "35 g miękkiego masła",
+      "opcjonalnie 1/2 łyżeczki kminku, jeśli ma być bardziej chlebowy niż tostowy"
+    ],
+    steps: [
+      "Przygotuj zaczyn z wody, drożdży i pożywki. Odstaw na 8–10 minut.",
+      "MK Gold połącz z jajkiem, żółtkiem i zaczynem. Wyrabiaj 7–8 minut.",
+      "Mascarpone rozetrzyj z miękkim masłem. Dodawaj po łyżce do pracującego miksera i wyrabiaj kolejne 8 minut.",
+      "Odstaw ciasto na 10 minut, następnie przełóż do keksówki i wygładź wilgotną dłonią.",
+      "Wyrastaj 75–100 minut, aż bochenek stanie się wyraźnie lżejszy i podniesie się mniej więcej o połowę.",
+      "Piecz w 170°C, góra–dół, około 45 minut. Jeśli wierzch zbyt szybko ciemnieje, przykryj luźno papierem.",
+      "Po wyjęciu cienko posmaruj wierzch masłem i przykryj ściereczką na 10 minut. Studź całkowicie przed krojeniem."
+    ],
+    tip: "To chleb celowo bogatszy. Nie dodawaj nasion do środka, bo odbiorą mu lekkość i utrudnią cienkie krojenie.",
+    whyItWorks: [
+      { title: "Dodatkowe żółtko", text: "Lecytyna pomaga połączyć wodę z tłuszczem, daje bardziej równy miękisz i ogranicza wysychanie." },
+      { title: "Mascarpone", text: "W niewielkiej ilości zmiękcza chleb i wydłuża świeżość, ale nie zmienia go w słodką bułkę." },
+      { title: "35 g masła", text: "Daje delikatność potrzebną do tostów. Dodane po wstępnym wyrobieniu nie niszczy struktury." }
+    ],
+    variants: [
+      { title: "Do tostera", text: "Pokrój całkowicie zimny chleb, przełóż kromki papierem i zamroź. Można wkładać je do tostera bez rozmrażania." },
+      { title: "Małe bułeczki śniadaniowe", text: "Uformuj 6 bułek, posmaruj śmietanką i piecz 22–25 minut w 180°C." }
+    ],
+    sourceNote: "Autorski, wzbogacony wariant chleba na bazie MK Gold. Jest bardziej miękki od receptury producenta, dlatego wymaga pełnego wystudzenia przed krojeniem."
+  },
+  {
+    id: "chleb-ziarnisty-mkgold",
+    title: "Chleb ziarnisty z kminkiem",
+    category: "śniadanie",
+    emoji: "🌾",
+    time: 160,
+    difficulty: "łatwy",
+    tone: ["#CDBA8D", "#7E704D"],
+    summary: "Wilgotniejszy bochenek z podprażonymi ziarnami. Nasiona są wcześniej namoczone, więc nie wysuszają środka.",
+    tags: ["chleb", "pieczywo", "MK Gold", "ziarna", "kminek", "drożdżowe"],
+    ingredients: [
+      "200 g MK Gold Bread Mix",
+      "4–5 g suchych drożdży",
+      "5 g cukru, miodu lub inuliny do drożdży",
+      "160 ml ciepłej wody do ciasta",
+      "30 ml wrzątku do namoczenia ziaren",
+      "1 jajko",
+      "25 g oliwy albo miękkiego masła",
+      "15 g pestek słonecznika",
+      "15 g pestek dyni, grubo posiekanych",
+      "5 g sezamu",
+      "1 łyżeczka kminku",
+      "1/4 łyżeczki czarnuszki",
+      "1 łyżeczka octu jabłkowego"
+    ],
+    steps: [
+      "Pestki dyni, słonecznik i sezam zalej 30 ml wrzątku. Przykryj i odstaw na 20 minut, następnie wystudź.",
+      "Z 160 ml ciepłej wody, drożdży i pożywki przygotuj zaczyn.",
+      "MK Gold wymieszaj z kminkiem i czarnuszką. Dodaj jajko, ocet, zaczyn i wyrabiaj 7 minut.",
+      "Dodaj masło albo oliwę, wyrabiaj 4 minuty, a na końcu krótko wmieszaj namoczone ziarna.",
+      "Przełóż do formy, wyrastaj 80–110 minut. Wierzch możesz posypać kilkoma ziarnami, ale nie grubą warstwą.",
+      "Piecz 50–55 minut w 175°C, góra–dół. Po 35 minutach sprawdź kolor i w razie potrzeby przykryj papierem.",
+      "Wyjmij z formy i studź na kratce co najmniej 2 godziny."
+    ],
+    tip: "Suche nasiona działają jak małe gąbki i potrafią wyciągnąć wodę z miękiszu. Krótkie namoczenie jest tu ważniejsze niż dodawanie kolejnych błonników.",
+    whyItWorks: [
+      { title: "Namoczone ziarna", text: "Dają chrupkość i smak, ale nie konkurują z mieszanką o wodę podczas pieczenia." },
+      { title: "Oliwa lub masło", text: "Oliwa daje bardziej rustykalny chleb, masło łagodniejszy i miększy. Oba ograniczają gumowatość wysokobiałkowego miękiszu." },
+      { title: "Bez dodatkowego bambusa", text: "MK Gold ma już dużo błonnika. Przy ziarnach dodatkowy bambus zwiększyłby ryzyko suchego, kruchego środka." }
+    ],
+    variants: [
+      { title: "Tylko słonecznik", text: "Użyj 35 g słonecznika. To najprostszy wariant i nie wymaga kupowania kilku nasion." },
+      { title: "Bardziej aromatyczny", text: "Dodaj 1/2 łyżeczki mielonej kolendry. Pasuje do kminku i nie dominuje tak łatwo jak czarnuszka." }
+    ],
+    sourceNote: "Autorski wariant na bazie MK Gold. Producent dopuszcza dodawanie ziaren; tutaj są one wcześniej nawodnione, żeby nie pogarszały wilgotności bochenka.",
+    sourceLabel: "MK Gold Bread Mix — informacje producenta",
+    sourceUrl: "https://mknutrition.pl/produkt/mk-gold-bread-mix-mieszanka-do-keto-chleba-ala-pszennego/"
+  }
+
 ];
 
 window.MOODS = [
   { name: "Coś czekoladowego", icon: "🍫", desc: "Kremowe, głębokie, bez pieczenia albo z efektem wow.", query: "czekoladowe" },
   { name: "Lekka kolacja", icon: "🥗", desc: "Sałatki i małe dania, po których wieczór nadal jest lekki.", query: "lekka kolacja" },
   { name: "Obiad bez kombinowania", icon: "🍳", desc: "Normalne składniki, zwykle jedna patelnia lub piekarnik.", query: "obiad do 30 minut" },
-  { name: "Kokos, ale celowo", icon: "🥥", desc: "Rafaellowe klimaty tam, gdzie kokos naprawdę pasuje.", query: "kokosowe" },
+  { name: "Kokosowe przyjemności", icon: "🥥", desc: "Kremowe desery, panna cotta i smaki w stylu Rafaello.", query: "kokosowe" },
   { name: "Mam gości", icon: "✨", desc: "Efektowne, lecz bez pół dnia w kuchni.", query: "na gości" },
   { name: "Coś do 15 minut", icon: "⏱️", desc: "Kiedy apetyt ma krótszą cierpliwość niż Ty.", query: "do 15 minut" },
   { name: "Owocowe i świeże", icon: "🍓", desc: "Limonka, maliny, truskawki i kwaśny kontrapunkt.", query: "orzeźwiające owoce" },
-  { name: "Chcę drożdżowego", icon: "🥐", desc: "Wypieki na mieszance, która naprawdę daje strukturę.", query: "drożdżowe" }
+  { name: "Chcę drożdżowego", icon: "🥐", desc: "Wypieki na mieszance, która naprawdę daje strukturę.", query: "drożdżowe" },
+  { name: "Pieczywo na co dzień", icon: "🍞", desc: "Chleby na MK Gold: miękkie, aromatyczne i bez keto-posmaku.", query: "chleb" }
 ];

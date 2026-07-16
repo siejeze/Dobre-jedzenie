@@ -1,13 +1,13 @@
-const CACHE = "dobre-jedzenie-v13";
+const CACHE = "dobre-jedzenie-v15";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=13",
-  "./recipes.js?v=13",
-  "./app.js?v=13",
+  "./styles.css?v=15",
+  "./recipes.js?v=15",
+  "./app.js?v=15",
   "./manifest.webmanifest",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png"
+  "./icons/icon-192-v14.png",
+  "./icons/icon-512-v14.png"
 ];
 
 self.addEventListener("install", (event) => {

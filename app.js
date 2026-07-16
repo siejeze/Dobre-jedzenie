@@ -169,6 +169,7 @@ async function importBackupFile(file) {
 const normalise = (value = "") =>
   String(value)
     .toLocaleLowerCase("pl")
+    .replace(/ł/g, "l")
     .normalize("NFD")
     .replace(/\p{Diacritic}/gu, "");
 
@@ -402,6 +403,20 @@ function scoreRecipe(recipe, query) {
     const cakeWords = ["ciasto", "sernik", "drozdz", "tort", "brownie", "biszkopt", "wypiek"];
     if (cakeWords.some((word) => text.includes(word))) score += 12;
     if (recipe.tags.includes("pieczone")) score += 3;
+  }
+
+  const chalkaIntent = /\b(chalka|chalki)\b/.test(normalisedQuery);
+  if (chalkaIntent) {
+    const titleAndTags = normalise([recipe.title, ...recipe.tags].join(" "));
+    if (!titleAndTags.includes("chalka")) return 0;
+    score += 16;
+  }
+
+  const breadIntent = /\b(chleb|chleba|chleby|pieczywo|bochenek|bochenki)\b/.test(normalisedQuery);
+  if (breadIntent) {
+    const titleAndTags = normalise([recipe.title, ...recipe.tags].join(" "));
+    if (!/(chleb|pieczywo|bochenek)/.test(titleAndTags)) return 0;
+    score += 12;
   }
 
   tokens.forEach((token) => {
@@ -796,11 +811,11 @@ window.addEventListener("appinstalled", () => installButton.classList.add("hidde
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
-      const registration = await navigator.serviceWorker.register("./sw.js?v=13");
+      const registration = await navigator.serviceWorker.register("./sw.js?v=15");
       await registration.update();
       navigator.serviceWorker.addEventListener("controllerchange", () => {
-        if (sessionStorage.getItem("dobreJedzenieReloadedV13") === "1") return;
-        sessionStorage.setItem("dobreJedzenieReloadedV13", "1");
+        if (sessionStorage.getItem("dobreJedzenieReloadedV15") === "1") return;
+        sessionStorage.setItem("dobreJedzenieReloadedV15", "1");
         window.location.reload();
       });
     } catch (error) {
