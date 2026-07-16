@@ -9,7 +9,7 @@
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icons/icon-192.png" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <link rel="stylesheet" href="./styles.css?v=3" />
+  <link rel="stylesheet" href="./styles.css?v=6" />
 </head>
 <body>
   <div class="app-shell">
@@ -52,6 +52,7 @@
           <button class="filter-chip" data-filter="lekka kolacja">Lekka kolacja</button>
           <button class="filter-chip" data-filter="czekoladowe">Czekoladowe</button>
           <button class="filter-chip" data-filter="kokosowe">Kokosowe</button>
+          <button class="filter-chip" data-filter="ciasto">Ciasta</button>
           <button class="filter-chip" data-filter="bez pieczenia">Bez pieczenia</button>
           <button class="filter-chip" data-filter="na gości">Na gości</button>
         </div>
@@ -96,17 +97,90 @@
     </main>
 
     <footer>
-      <p>Dobre Jedzenie · wersja startowa 0.1</p>
+      <p>Dobre Jedzenie · wersja 0.6</p>
       <button id="installButton" class="install-button hidden" type="button">Zainstaluj aplikację</button>
     </footer>
   </div>
+
+  <div class="quick-add-dock" aria-label="Dodawanie przepisu">
+    <button id="clipboardAddButton" class="quick-add-button" type="button">
+      <span class="quick-add-icon" aria-hidden="true">＋</span>
+      <span>Dodaj ze schowka</span>
+    </button>
+    <div class="quick-add-links">
+      <button id="manualAddButton" class="manual-add-link" type="button">Wpisz ręcznie</button>
+      <span class="quick-add-separator" aria-hidden="true">·</span>
+      <button id="transferRecipesButton" class="manual-add-link" type="button">Przenieś moje przepisy</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <dialog id="addRecipeDialog" class="add-recipe-dialog">
+    <form id="addRecipeForm" method="dialog">
+      <div class="add-dialog-header">
+        <div>
+          <p class="eyebrow">Własny przepis</p>
+          <h2>Wklej wszystko naraz</h2>
+        </div>
+        <button id="closeAddDialog" class="simple-close" type="button" aria-label="Zamknij">×</button>
+      </div>
+      <p class="add-dialog-copy">
+        Wystarczy tytuł, nagłówek „Składniki” i nagłówek „Przygotowanie”. Aplikacja sama podzieli tekst.
+      </p>
+      <label class="recipe-text-label" for="recipeText">Treść przepisu</label>
+      <textarea id="recipeText" rows="15" placeholder="Sernik limonkowy
+
+Składniki:
+250 g mascarpone
+...
+
+Przygotowanie:
+1. Wymieszaj...
+2. Schłódź..."></textarea>
+      <div class="add-dialog-actions">
+        <button id="pasteIntoEditorButton" class="secondary-action" type="button">Wklej ze schowka</button>
+        <button class="primary-action" type="submit">Zapisz przepis</button>
+      </div>
+    </form>
+  </dialog>
+
+
+
+  <dialog id="backupDialog" class="backup-dialog">
+    <div class="backup-dialog-content">
+      <div class="add-dialog-header">
+        <div>
+          <p class="eyebrow">Kopia zapasowa</p>
+          <h2>Przenieś moje przepisy</h2>
+        </div>
+        <button id="closeBackupDialog" class="simple-close" type="button" aria-label="Zamknij">×</button>
+      </div>
+      <p class="add-dialog-copy">
+        Zapisz jeden plik na Dysku Google lub w innym bezpiecznym miejscu. Na nowym telefonie wczytasz go tutaj.
+      </p>
+      <div class="backup-summary" id="backupSummary"></div>
+      <div class="backup-actions">
+        <button id="exportBackupButton" class="backup-action primary-backup-action" type="button">
+          <span class="backup-action-icon" aria-hidden="true">↓</span>
+          <span><strong>Zapisz kopię</strong><small>Przepisy i ulubione do jednego pliku</small></span>
+        </button>
+        <button id="importBackupButton" class="backup-action" type="button">
+          <span class="backup-action-icon" aria-hidden="true">↑</span>
+          <span><strong>Wczytaj kopię</strong><small>Odtwórz bazę na tym telefonie</small></span>
+        </button>
+        <input id="backupFileInput" class="hidden" type="file" accept="application/json,.json" />
+      </div>
+      <p class="backup-note">Kopia nie zawiera przepisów wbudowanych w aplikację, bo te pojawiają się automatycznie.</p>
+    </div>
+  </dialog>
 
   <dialog id="recipeDialog" class="recipe-dialog">
     <article id="dialogContent"></article>
     <button id="closeDialog" class="dialog-close" type="button" aria-label="Zamknij">×</button>
   </dialog>
 
-  <script src="./recipes.js?v=3"></script>
-  <script src="./app.js?v=3"></script>
+  <script src="./recipes.js?v=6"></script>
+  <script src="./app.js?v=6"></script>
 </body>
 </html>

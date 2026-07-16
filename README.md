@@ -52,3 +52,12 @@ Wszystkie przepisy są w pliku `recipes.js`. Każdy ma tytuł, czas, tagi, skła
 ## Uwaga o wartościach odżywczych
 
 Ta wersja nie podaje wyliczonego makro. Skład produktów różni się między markami, więc wartości trzeba liczyć na podstawie konkretnych etykiet. W kolejnej wersji można dodać kalkulator porcji i węglowodanów.
+
+## Przenoszenie własnych przepisów
+
+W aplikacji wybierz `Przenieś moje przepisy`.
+
+- `Zapisz kopię` tworzy jeden plik JSON z własnymi przepisami i ulubionymi. Na telefonie można od razu zapisać go na Dysku Google przez systemowe menu udostępniania.
+- `Wczytaj kopię` odtwarza bazę na nowym urządzeniu.
+
+Plik kopii nie zawiera przepisów wbudowanych w aplikację, ponieważ te są częścią samej aplikacji.
