@@ -224,7 +224,7 @@ function isMalformedSavedRecipe(recipe) {
   return countPromptMarkers(original) >= 2 || (hasPlaceholder && isClearlyNotARecipe(original));
 }
 
-function showToast(message, actionLabel = "", action = null) {
+function showToast(message, actionLabel = "", action = null, duration = 4600) {
   clearTimeout(toastTimer);
   toast.innerHTML = `<span>${escapeHtml(message)}</span>${actionLabel ? `<button type="button">${escapeHtml(actionLabel)}</button>` : ""}`;
   toast.classList.remove("hidden");
@@ -234,7 +234,7 @@ function showToast(message, actionLabel = "", action = null) {
       toast.classList.add("hidden");
     }, { once: true });
   }
-  toastTimer = setTimeout(() => toast.classList.add("hidden"), 4600);
+  toastTimer = setTimeout(() => toast.classList.add("hidden"), duration);
 }
 
 function stripListPrefix(line) {
@@ -851,14 +851,55 @@ backupFileInput.addEventListener("change", async () => {
   }
 });
 
+
+let deferredInstallPrompt = null;
+
+function isStandaloneApp() {
+  return window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true;
+}
+
+function showInstallBubble() {
+  if (!deferredInstallPrompt || isStandaloneApp()) return;
+  if (sessionStorage.getItem("dobreJedzenieInstallBubbleShownV20") === "1") return;
+
+  sessionStorage.setItem("dobreJedzenieInstallBubbleShownV20", "1");
+  showToast(
+    "Zainstaluj Dobre Jedzenie jak zwykłą aplikację.",
+    "Zainstaluj",
+    async () => {
+      const promptEvent = deferredInstallPrompt;
+      deferredInstallPrompt = null;
+      await promptEvent.prompt();
+      const choice = await promptEvent.userChoice;
+      if (choice.outcome !== "accepted") {
+        sessionStorage.removeItem("dobreJedzenieInstallBubbleShownV20");
+      }
+    },
+    9000
+  );
+}
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  window.setTimeout(showInstallBubble, 900);
+});
+
+window.addEventListener("appinstalled", () => {
+  deferredInstallPrompt = null;
+  toast.classList.add("hidden");
+  showToast("Dobre Jedzenie zostało zainstalowane.");
+});
+
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
-      const registration = await navigator.serviceWorker.register("./sw.js?v=19");
+      const registration = await navigator.serviceWorker.register("./sw.js?v=20");
       await registration.update();
       navigator.serviceWorker.addEventListener("controllerchange", () => {
-        if (sessionStorage.getItem("dobreJedzenieReloadedV19") === "1") return;
-        sessionStorage.setItem("dobreJedzenieReloadedV19", "1");
+        if (sessionStorage.getItem("dobreJedzenieReloadedV20") === "1") return;
+        sessionStorage.setItem("dobreJedzenieReloadedV20", "1");
         window.location.reload();
       });
     } catch (error) {

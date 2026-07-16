@@ -1,0 +1,18 @@
+DOBRE JEDZENIE 0.20 — WGRYWANIE
+
+1. Rozpakuj ZIP.
+2. Otwórz folder Dobre-jedzenie-0.20.
+3. Wgraj do repozytorium WSZYSTKIE pliki znajdujące się w środku,
+   włącznie z:
+   - icon-192.png
+   - icon-512.png
+   - manifest.webmanifest
+   - sw.js
+   - .nojekyll
+4. Pliki muszą leżeć bezpośrednio w głównym katalogu repozytorium.
+5. Usuń z telefonu stary skrót Dobre Jedzenie.
+6. Otwórz stronę ponownie w Chrome, dotknij jej przynajmniej raz
+   i pozostaw otwartą przez chwilę. Gdy Chrome potwierdzi możliwość
+   instalacji, pojawi się mały dymek „Zainstaluj”.
+
+W stopce aplikacji powinna być widoczna wersja 0.20.
